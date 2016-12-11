@@ -1,3 +1,10 @@
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+require 'mal_parser'
+
+require 'rspec/collection_matchers'
+require 'vcr'
+require 'awesome_print'
+
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr_cassettes'
   c.hook_into :webmock # or :fakeweb

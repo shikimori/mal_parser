@@ -1,9 +1,11 @@
 AllCops:
   TargetRubyVersion: 2.3
   Exclude:
+    - bin/*
     - Guardfile
     - Gemfile
     - Rakefile
+    - '*.gemspec'
     - spec/spec_helper.rb
     - spec/support*
   UseCache: false

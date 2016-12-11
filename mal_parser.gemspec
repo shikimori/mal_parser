@@ -1,36 +1,45 @@
-Gem::Specification.new do |gem|
-  gem.name = 'mal_parser'
-  gem.version = '0.0.1'
-  gem.date = '2016-12-11'
-  gem.summary = 'MAL Parser'
-  gem.description = 'myanimelist.net parsing library'
-  gem.authors = ['https://github.com/morr']
-  gem.email = 'takandar@gmail.com'
-  gem.files = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
-  gem.require_paths = ['lib']
-  gem.license = 'MIT'
-  # gem.homepage    = 'http://rubygems.org/gems/url'
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'mal_parser/version'
 
-  gem.required_ruby_version = '>= 2.2.2'
+Gem::Specification.new do |spec|
+  spec.name            = 'mal_parser'
+  spec.version        = MalParser::VERSION
+  spec.date            = '2016-12-11'
+  spec.summary         = 'MAL Parser'
+  spec.description     = 'myanimelist.net parsing library'
+  spec.authors         = ['https://github.com/morr']
+  spec.email           = 'takandar@gmail.com'
+  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{^(test|spec|features)/})
+  end
+  spec.require_paths   = ['lib']
+  spec.license         = 'MIT'
+  # spec.homepage        = 'http://rubygems.org/gems/url'
 
-  gem.add_dependency 'vcr'
+  spec.required_ruby_version = '>= 2.2.2'
 
-  gem.add_development_dependency 'rspec'
-  # gem.add_development_dependency 'rspec-core'
-  # gem.add_development_dependency 'rspec-expectations'
-  # gem.add_development_dependency 'rspec-mocks'
-  # gem.add_development_dependency 'rspec-rails'
-  # gem.add_development_dependency 'rspec-collection_matchers'
-  # gem.add_development_dependency 'rspec-its'
+  spec.add_dependency 'attr_extras'
+  spec.add_dependency 'nokogiri'
 
-  gem.add_development_dependency 'pry-byebug'
-  gem.add_development_dependency 'pry-stack_explorer'
+  spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rspec-collection_matchers'
 
-  gem.add_development_dependency 'rb-inotify'
-  gem.add_development_dependency 'rb-fsevent'
-  gem.add_development_dependency 'rb-fchange'
-  gem.add_development_dependency 'guard'
-  gem.add_development_dependency 'guard-rspec'
-  gem.add_development_dependency 'guard-bundler'
-  gem.add_development_dependency 'guard-rubocop'
+  spec.add_development_dependency 'vcr'
+  spec.add_development_dependency 'webmock'
+
+  spec.add_development_dependency 'pry-byebug'
+  spec.add_development_dependency 'pry-stack_explorer'
+  spec.add_development_dependency 'awesome_print'
+
+  spec.add_development_dependency 'rb-inotify'
+  spec.add_development_dependency 'rb-fsevent'
+  spec.add_development_dependency 'rb-fchange'
+  spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'guard-rspec'
+  spec.add_development_dependency 'guard-bundler'
+  spec.add_development_dependency 'guard-rubocop'
 end
