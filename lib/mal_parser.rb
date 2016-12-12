@@ -4,8 +4,11 @@ require 'attr_extras'
 require 'nokogiri'
 
 module MalParser
-  autoload :Catalog, 'mal_parser/catalog'
   autoload :Configuration, 'mal_parser/configuration'
+
+  module Catalog
+    autoload :Page, 'mal_parser/catalog/page'
+  end
 
   class << self
     attr_writer :configuration

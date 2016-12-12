@@ -2,6 +2,9 @@
 
 ### Usage
 ```ruby
-MalParser::CatalogPage.call type: 'anime', page: 0, sorting: 'updated_at'
-MalParser::CatalogPage.call type: 'manga', page: 0, sorting: 'name'
+# get page 1 of animes ordered by recently updated
+MalParser::Catalog::Page.call type: 'anime', page: 0, sorting: 'updated_at'
+
+# get page 1 of animes ordered by name
+MalParser::Catalog::Page.call type: 'manga', page: 0, sorting: 'name'
 ```

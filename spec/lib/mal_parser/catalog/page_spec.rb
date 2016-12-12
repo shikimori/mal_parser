@@ -19,7 +19,7 @@ describe MalParser::Catalog::Page do
         let(:type) { 'anime' }
 
         it do
-          is_expected.to have(MalParser::CatalogPage::ENTRIES_PER_PAGE).items
+          is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
           expect(results.first).to eq(
             id: 20_707,
             name: '"0"',
@@ -32,7 +32,7 @@ describe MalParser::Catalog::Page do
         let(:type) { 'manga' }
 
         it do
-          is_expected.to have(MalParser::CatalogPage::ENTRIES_PER_PAGE).items
+          is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
           expect(results.first).to eq(
             id: 85_868,
             name: '!',
@@ -46,7 +46,7 @@ describe MalParser::Catalog::Page do
       let(:page) { 20 }
 
       it do
-        is_expected.to have(MalParser::CatalogPage::ENTRIES_PER_PAGE).items
+        is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
           id: 5624,
           name: 'Biohazard 4D-Executer',
@@ -59,7 +59,7 @@ describe MalParser::Catalog::Page do
       let(:sorting) { :updated_at }
 
       it do
-        is_expected.to have(MalParser::CatalogPage::ENTRIES_PER_PAGE).items
+        is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
           id: 34_514,
           name: 'Pokemon Generations',
