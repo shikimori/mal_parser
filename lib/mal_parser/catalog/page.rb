@@ -1,5 +1,5 @@
 module MalParser
-  class CatalogPage
+  class Catalog::Page
     method_object [:type!, :page, :sorting]
 
     ENTRIES_PER_PAGE = 50

@@ -4,7 +4,7 @@ require 'attr_extras'
 require 'nokogiri'
 
 module MalParser
-  autoload :CatalogPage, 'mal_parser/catalog_page'
+  autoload :Catalog, 'mal_parser/catalog'
   autoload :Configuration, 'mal_parser/configuration'
 
   class << self

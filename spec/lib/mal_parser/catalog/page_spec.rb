@@ -1,6 +1,6 @@
-describe MalParser::CatalogPage do
+describe MalParser::Catalog::Page do
   let(:parser) do
-    MalParser::CatalogPage.new(
+    MalParser::Catalog::Page.new(
       type: type,
       page: page,
       sorting: sorting
