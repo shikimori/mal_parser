@@ -1,28 +1,29 @@
 module MalParser
   class Entry::Base
+    include ParseHelper
+
     method_object :id
 
+    FIELDS = %i(id name image)
+
     def call
-      doc = Nokogiri::HTML html
-      {
-        id: @id,
-        name: parse_name(doc),
-        image: parse_image(doc)
-      }
+      self.class::FIELDS.each_with_object({}) do |field, memo|
+        memo[field] = send "parse_#{field}"
+      end
     end
 
   private
 
-    def parse_name doc
+    def parse_id
+      @id
+    end
+
+    def parse_name
       doc.css('meta[property="og:title"]').first&.attr(:content)
     end
 
-    def parse_image doc
+    def parse_image
       doc.css('meta[property="og:image"]').first&.attr(:content)
-    end
-
-    def html
-      MalParser.configuration.http_get.call(url)
     end
 
     def url
@@ -30,7 +31,7 @@ module MalParser
     end
 
     def type
-      self.class.name.sub(/.*::/, '')
+      self.class.name.sub(/.*::/, '').downcase
     end
   end
 end

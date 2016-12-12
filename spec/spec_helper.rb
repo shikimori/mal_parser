@@ -4,6 +4,8 @@ require 'mal_parser'
 require 'rspec/collection_matchers'
 require 'vcr'
 require 'awesome_print'
+require 'pry-byebug'
+require 'pry-stack_explorer'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr_cassettes'

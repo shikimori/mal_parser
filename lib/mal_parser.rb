@@ -5,6 +5,7 @@ require 'nokogiri'
 
 module MalParser
   autoload :Configuration, 'mal_parser/configuration'
+  autoload :ParseHelper, 'mal_parser/parse_helper'
 
   module Catalog
     autoload :Page, 'mal_parser/catalog/page'
@@ -12,6 +13,7 @@ module MalParser
 
   module Entry
     autoload :Base, 'mal_parser/entry/base'
+    autoload :Anime, 'mal_parser/entry/anime'
   end
 
   URL_BASE = 'https://myanimelist.net'

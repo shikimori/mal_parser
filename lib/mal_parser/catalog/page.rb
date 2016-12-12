@@ -1,5 +1,7 @@
 module MalParser
   class Catalog::Page
+    include ParseHelper
+
     method_object [:type!, :page, :sorting]
 
     ENTRIES_PER_PAGE = 50
@@ -10,7 +12,6 @@ module MalParser
     }
 
     def call
-      doc = Nokogiri::HTML html
       doc.css('table a.hoverinfo_trigger.fw-b').map do |node|
         url = node.attr('href')
 
@@ -23,10 +24,6 @@ module MalParser
     end
 
   private
-
-    def html
-      MalParser.configuration.http_get.call(url)
-    end
 
     def url
       "#{URL_BASE}/#{@type}.php?show=#{show_param}&o=#{o_param}"
