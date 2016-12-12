@@ -10,6 +10,12 @@ module MalParser
     autoload :Page, 'mal_parser/catalog/page'
   end
 
+  module Entry
+    autoload :Base, 'mal_parser/entry/base'
+  end
+
+  URL_BASE = 'https://myanimelist.net'
+
   class << self
     attr_writer :configuration
   end

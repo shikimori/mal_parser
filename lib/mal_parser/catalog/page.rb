@@ -10,7 +10,7 @@ module MalParser
     }
 
     def call
-      doc = Nokogiri::HTML(html)
+      doc = Nokogiri::HTML html
       doc.css('table a.hoverinfo_trigger.fw-b').map do |node|
         url = node.attr('href')
 
@@ -29,7 +29,7 @@ module MalParser
     end
 
     def url
-      "https://myanimelist.net/#{@type}.php?show=#{show_param}&o=#{o_param}"
+      "#{URL_BASE}/#{@type}.php?show=#{show_param}&o=#{o_param}"
     end
 
     def o_param
