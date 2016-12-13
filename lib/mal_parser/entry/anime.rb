@@ -3,12 +3,11 @@ module MalParser
   class Entry::Anime < Entry::Base
     FIELDS = Entry::Base::FIELDS + %i(
       english japanese synonyms kind episodes status aired_on released_on
-      broadcast
+      broadcast studios origin genres duration rating
+      score ranked popularity members favorites
     )
-      # description related 
-      # genres studios duration
-      # rating score ranked popularity members favorites
-    # )
+      # description related
+
   STATUSES = {
     'Not yet aired' => 'anons',
     'Currently Airing' => 'ongoing',
@@ -65,43 +64,64 @@ module MalParser
       value if value && !value.empty? && value != 'Unknown'
     end
 
+    def parse_studios
+      extract_links('Studios')
+    end
+
+    def parse_origin
+      extract_line('Source')
+    end
+
+    def parse_genres
+      extract_links('Genres')
+    end
+
+    def parse_duration
+      value = extract_line('Duration')
+      (value.match(/(\d+) hr./) ? $1.to_i * 60 : 0) +
+        (value.match(/(\d+) min./) ? $1.to_i : 0)
+    end
+
+    def parse_rating
+      RATINGS[CGI::unescapeHTML(extract_line('Rating'))]
+    end
+
+    def parse_score
+      value = extract_line('Score').to_f
+
+      if value >= 9.9
+        0
+      else
+        value
+      end
+    end
+
+    def parse_ranked
+      extract_line('Ranked').tr('#', '').to_i
+    end
+
+    def parse_popularity
+      extract_line('Popularity').tr('#', '').to_i
+    end
+
+    def parse_members
+      extract_line('Members').tr(',', '').to_i
+    end
+
+    def parse_favorites
+      extract_line('Favorites').tr(',', '').to_i
+    end
+
     def parse_description
     end
 
     def parse_related
     end
 
-    def parse_genres
-    end
-
-    def parse_studios
-    end
-
-    def parse_duration
-    end
-
-    def parse_rating
-    end
-
-    def parse_score
-    end
-
-    def parse_ranked
-    end
-
-    def parse_popularity
-    end
-
-    def parse_members
-    end
-
-    def parse_favorites
-    end
-
     def dates
       @dates ||= extract_line('Aired')
         .split(' to ')
-        .map { |date| convert_date date }
+        .map { |date| extract_date date }
     end
   end
   # rubocop:enable ClassLength

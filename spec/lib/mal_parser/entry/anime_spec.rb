@@ -18,7 +18,34 @@ describe MalParser::Entry::Anime do
         status: 'released',
         aired_on: Date.parse('2012-07-08'),
         released_on: Date.parse('2012-12-23'),
-        broadcast: 'Sundays at 00:00 (JST)'
+        broadcast: 'Sundays at 00:00 (JST)',
+        studios: [{ id: 56, name: 'A-1 Pictures' }],
+        origin: 'Light novel',
+        genres: [
+          {
+            id: 1,
+            name: 'Action'
+          }, {
+            id: 2,
+            name: 'Adventure'
+          }, {
+            id: 10,
+            name: 'Fantasy'
+          }, {
+            id: 11,
+            name: 'Game'
+          }, {
+            id: 22,
+            name: 'Romance'
+          }
+        ],
+        duration: 23,
+        rating: 'pg_13',
+        score: 7.83,
+        ranked: 807,
+        popularity: 3,
+        members: 892811,
+        favorites: 40900
       )
     end
   end
