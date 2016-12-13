@@ -13,13 +13,7 @@ module MalParser
 
     def call
       doc.css('table a.hoverinfo_trigger.fw-b').map do |node|
-        url = node.attr('href')
-
-        {
-          id: url.match(%r{/(?<id>\d+)(/|$)})[:id].to_i,
-          name: node.text,
-          url: url
-        }
+        extract_link node
       end
     end
 

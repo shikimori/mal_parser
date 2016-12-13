@@ -4,90 +4,122 @@ module MalParser
     FIELDS = Entry::Base::FIELDS + %i(
       english japanese synonyms kind episodes status aired_on released_on
       broadcast studios origin genres duration rating
-      score ranked popularity members favorites
+      score ranked popularity members favorites synopsis related
     )
-      # description related
 
-  STATUSES = {
-    'Not yet aired' => 'anons',
-    'Currently Airing' => 'ongoing',
-    'Finished Airing' => 'released'
-  }
-  RATINGS = {
-    'None' => 'none',
-    'G - All Ages' => 'g',
-    'PG - Children' => 'pg',
-    'PG-13 - Teens 13 or older' => 'pg_13',
-    'R - 17+ (violence & profanity)' => 'r',
-    'R+ - Mild Nudity' => 'r_plus',
-    'Rx - Hentai' => 'rx'
-  }
+    KIND = {
+      'Movie' => :movie,
+      'Music' => :music,
+      'TV' => :tv,
+      'Special' => :special,
+      'OVA' => :ova,
+      'ONA' => :ona
+    }
+    STATUS = {
+      'Not yet aired' => :anons,
+      'Currently Airing' => :ongoing,
+      'Finished Airing' => :released
+    }
+    RATING = {
+      'None' => :none,
+      'G - All Ages' => :g,
+      'PG - Children' => :pg,
+      'PG-13 - Teens 13 or older' => :pg_13,
+      'R - 17+ (violence & profanity)' => :r,
+      'R+ - Mild Nudity' => :r_plus,
+      'Rx - Hentai' => :rx
+    }
+    RELATED = {
+      'Adaptation' => :adaptation,
+      'Alternative setting' => :alternative_setting,
+      'Alternative version' => :alternative_version,
+      'Character' => :character,
+      'Full story' => :full_story,
+      'Other' => :other,
+      'Parent story' => :parent_story,
+      'Prequel' => :prequel,
+      'Sequel' => :sequel,
+      'Side story' => :side_story,
+      'Spin-off' => :spin_off,
+      'Summary' => :summary
+    }
 
   private
 
-    def parse_english
-      extract_line 'English'
+    def english
+      parse_line 'English'
     end
 
-    def parse_japanese
-      extract_line 'Japanese'
+    def japanese
+      parse_line 'Japanese'
     end
 
-    def parse_synonyms
-      extract_line('Synonyms').split(',').map(&:strip)
+    def synonyms
+      parse_line('Synonyms').split(',').map(&:strip)
     end
 
-    def parse_kind
-      value = extract_line('Type')&.downcase
-      value if value && !value.empty? && value != 'unknown'
+    def kind
+      value = parse_line('Type')
+      return if !value || value.empty? || value == 'unknown'
+
+      KIND[value] || explode!(:kind, value)
     end
 
-    def parse_episodes
-      value = extract_line('Episodes').to_i
-      value if value > 0
+    def episodes
+      value = parse_line('Episodes').to_i
+      value if value.positive?
     end
 
-    def parse_status
-      STATUSES[extract_line('Status')]
+    def status
+      value = parse_line('Status')
+      return if !value || value.empty?
+
+      STATUS[value] || explode!(:status, value)
     end
 
-    def parse_aired_on
+    def aired_on
       dates[0]
     end
 
-    def parse_released_on
+    def released_on
       dates[1]
     end
 
-    def parse_broadcast
-      value = extract_line('Broadcast')
+    def broadcast
+      value = parse_line('Broadcast')
       value if value && !value.empty? && value != 'Unknown'
     end
 
-    def parse_studios
-      extract_links('Studios')
+    def studios
+      parse_links('Studios')
     end
 
-    def parse_origin
-      extract_line('Source')
+    def origin
+      parse_line('Source')
     end
 
-    def parse_genres
-      extract_links('Genres')
+    def genres
+      parse_links('Genres')
     end
 
-    def parse_duration
-      value = extract_line('Duration')
-      (value.match(/(\d+) hr./) ? $1.to_i * 60 : 0) +
-        (value.match(/(\d+) min./) ? $1.to_i : 0)
+    def duration
+      value = parse_line('Duration')
+
+      hours = $LAST_MATCH_INFO[:hours] if value =~ /(?<hours>\d+) hr./
+      minutes = $LAST_MATCH_INFO[:minutes] if value =~ /(?<minutes>\d+) min./
+
+      hours.to_i * 60 + minutes.to_i
     end
 
-    def parse_rating
-      RATINGS[CGI::unescapeHTML(extract_line('Rating'))]
+    def rating
+      value = CGI.unescapeHTML(parse_line('Rating'))
+      return if !value || value.empty?
+
+      RATING[value] || explode!(:rating, value)
     end
 
-    def parse_score
-      value = extract_line('Score').to_f
+    def score
+      value = parse_line('Score').to_f
 
       if value >= 9.9
         0
@@ -96,32 +128,57 @@ module MalParser
       end
     end
 
-    def parse_ranked
-      extract_line('Ranked').tr('#', '').to_i
+    def ranked
+      parse_line('Ranked').tr('#', '').to_i
     end
 
-    def parse_popularity
-      extract_line('Popularity').tr('#', '').to_i
+    def popularity
+      parse_line('Popularity').tr('#', '').to_i
     end
 
-    def parse_members
-      extract_line('Members').tr(',', '').to_i
+    def members
+      parse_line('Members').tr(',', '').to_i
     end
 
-    def parse_favorites
-      extract_line('Favorites').tr(',', '').to_i
+    def favorites
+      parse_line('Favorites').tr(',', '').to_i
     end
 
-    def parse_description
+    def synopsis
+      return if no_synopsis?
+
+      fixed_text = Nokogiri::HTML::DocumentFragment
+        .parse(parse_synopsis)
+        .to_html(save_with: ParseHelper::NOKOGIRI_SAVE_OPTIONS)
+
+      CGI.unescapeHTML(fixed_text) unless fixed_text&.empty?
     end
 
-    def parse_related
+    def related
+      parse_related.each_with_object({}) do |tr, memo|
+        tds = tr.css('td')
+        value = tds.first.text.sub(/:$/, '')
+        relation = RELATED[value] || explode!(:related, value)
+
+        memo[relation] = tds.last
+          .css('a')
+          .map { |link| parse_link link }
+          .compact
+      end
     end
 
     def dates
-      @dates ||= extract_line('Aired')
+      @dates ||= parse_line('Aired')
         .split(' to ')
-        .map { |date| extract_date date }
+        .map { |date| parse_date date }
+    end
+
+    def parse_synopsis
+      doc.css('span[itemprop="description"]').first&.text
+    end
+
+    def parse_related
+      doc.css('table.anime_detail_related_anime tr')
     end
   end
   # rubocop:enable ClassLength

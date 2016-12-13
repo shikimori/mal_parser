@@ -22,8 +22,7 @@ describe MalParser::Catalog::Page do
           is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
           expect(results.first).to eq(
             id: 20_707,
-            name: '"0"',
-            url: 'https://myanimelist.net/anime/20707/0'
+            name: '"0"'
           )
         end
       end
@@ -35,8 +34,7 @@ describe MalParser::Catalog::Page do
           is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
           expect(results.first).to eq(
             id: 85_868,
-            name: '!',
-            url: 'https://myanimelist.net/manga/85868/'
+            name: '!'
           )
         end
       end

@@ -2,6 +2,7 @@ require 'mal_parser/version'
 require 'open-uri'
 require 'attr_extras'
 require 'nokogiri'
+require 'English'
 
 module MalParser
   autoload :Configuration, 'mal_parser/configuration'
@@ -14,6 +15,12 @@ module MalParser
   module Entry
     autoload :Base, 'mal_parser/entry/base'
     autoload :Anime, 'mal_parser/entry/anime'
+  end
+
+  class UnexpectedValue < StandardError
+    def initialize parser_klass:, id:, param:, value:
+      super "Unexpected #{param} `#{value}` for #{parser_klass.name} id=#{id}"
+    end
   end
 
   URL_BASE = 'https://myanimelist.net'

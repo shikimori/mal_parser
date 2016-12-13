@@ -2,9 +2,12 @@
 
 ### Usage
 ```ruby
-# get page 1 of animes ordered by recently updated
+# get first page of animes ordered by recently updated
 MalParser::Catalog::Page.call type: 'anime', page: 0, sorting: 'updated_at'
 
-# get page 1 of animes ordered by name
+# get first page of animes ordered by name
 MalParser::Catalog::Page.call type: 'manga', page: 0, sorting: 'name'
+
+# get anime id=1
+MalParser::Entry::Anime.call 1
 ```

@@ -1,10 +1,23 @@
 module MalParser
   module ParseHelper
+    NOKOGIRI_SAVE_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_HTML |
+      Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
+
+    NO_SYNOPSIS_TEXT = [
+      'No synopsis has been added for this',
+      'No biography written.',
+      'No summary yet.'
+    ]
+
     def doc
-      @doc ||= Nokogiri::HTML MalParser.configuration.http_get.call(url)
+      @doc ||= Nokogiri::HTML html
     end
 
-    def extract_line text
+    def html
+      @html ||= MalParser.configuration.http_get.call url
+    end
+
+    def parse_line text
       node = dark_texts.find { |v| v.text.start_with? "#{text}:" }&.next
       return unless node
 
@@ -12,19 +25,28 @@ module MalParser
       text.empty? ? node.next&.text&.strip : text
     end
 
-    def extract_links text
+    def parse_links text
       dark_texts
         .find { |v| v.text.start_with? "#{text}:" }
         &.parent
         &.css('a')
-        &.map { |node| { id: extract_id(node.attr(:href)), name: node.text } }
+        &.map { |node| parse_link node }
+    end
+
+    def parse_link node
+      url = node.attr 'href'
+
+      {
+        id: extract_id(url),
+        name: node.text
+      }
     end
 
     def dark_texts
       @dark_texts ||= doc.css('span.dark_text')
     end
 
-    def extract_date date
+    def parse_date date
       # if date.match /^\w+\s+\d+,$/
         # nil
       # elsif date.match(/^\d+$/)
@@ -40,6 +62,10 @@ module MalParser
 
     def extract_id url
       url.match(%r{/(?<id>\d+)(/|$)})[:id].to_i
+    end
+
+    def no_synopsis?
+      NO_SYNOPSIS_TEXT.any? { |phrase| html.include? phrase }
     end
   end
 end

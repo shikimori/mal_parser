@@ -3,26 +3,21 @@ module MalParser
     include ParseHelper
 
     method_object :id
-
     FIELDS = %i(id name image)
 
     def call
       self.class::FIELDS.each_with_object({}) do |field, memo|
-        memo[field] = send "parse_#{field}"
+        memo[field] = send field
       end
     end
 
   private
 
-    def parse_id
-      @id
-    end
-
-    def parse_name
+    def name
       doc.css('meta[property="og:title"]').first&.attr(:content)
     end
 
-    def parse_image
+    def image
       doc.css('meta[property="og:image"]').first&.attr(:content)
     end
 
@@ -32,6 +27,14 @@ module MalParser
 
     def type
       self.class.name.sub(/.*::/, '').downcase
+    end
+
+    def explode! param, value
+      raise UnexpectedValue,
+        parser_klass: self.class,
+        id: @id,
+        param: param,
+        value: value
     end
   end
 end
