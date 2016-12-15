@@ -49,17 +49,21 @@ describe MalParser::Entry::Anime do
         related: {
           adaptation: [{
             id: 21_479,
+            type: :manga,
             name: 'Sword Art Online'
           }, {
             id: 43_921,
+            type: :manga,
             name: 'Sword Art Online: Progressive'
           }],
           other: [{
             id: 16_099,
+            type: :anime,
             name: 'Sword Art Online: Sword Art Offline'
           }],
           sequel: [{
             id: 20_021,
+            type: :anime,
             name: 'Sword Art Online: Extra Edition'
           }]
         },

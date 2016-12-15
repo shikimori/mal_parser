@@ -1,5 +1,5 @@
+# rubocop:disable ClassLength
 module MalParser
-  # rubocop:disable ClassLength
   class Entry::Anime < Entry::Base
     FIELDS = Entry::Base::FIELDS + %i(
       english japanese synonyms kind episodes status aired_on released_on
@@ -62,7 +62,7 @@ module MalParser
       value = parse_line('Type')
       return if !value || value.empty? || value == 'unknown'
 
-      KIND[value] || explode!(:kind, value)
+      self.class::KIND[value] || explode!(:kind, value)
     end
 
     def episodes
@@ -74,7 +74,7 @@ module MalParser
       value = parse_line('Status')
       return if !value || value.empty?
 
-      STATUS[value] || explode!(:status, value)
+      self.class::STATUS[value] || explode!(:status, value)
     end
 
     def aired_on
@@ -162,7 +162,7 @@ module MalParser
 
         memo[relation] = tds.last
           .css('a')
-          .map { |link| parse_link link }
+          .map { |link| parse_link link, with_type: true }
           .compact
       end
     end
@@ -181,5 +181,5 @@ module MalParser
       doc.css('table.anime_detail_related_anime tr')
     end
   end
-  # rubocop:enable ClassLength
 end
+# rubocop:enable ClassLength

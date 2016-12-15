@@ -33,13 +33,14 @@ module MalParser
         &.map { |node| parse_link node }
     end
 
-    def parse_link node
+    def parse_link node, with_type: false
       url = node.attr 'href'
 
-      {
-        id: extract_id(url),
-        name: node.text
-      }
+      if with_type
+        { id: extract_id(url), name: node.text, type: extract_type(url) }
+      else
+        { id: extract_id(url), name: node.text }
+      end
     end
 
     def dark_texts
@@ -62,6 +63,10 @@ module MalParser
 
     def extract_id url
       url.match(%r{/(?<id>\d+)(/|$)})[:id].to_i
+    end
+
+    def extract_type url
+      url.match(%r{^/(?<type>anime|manga)/})[:type].to_sym
     end
 
     def no_synopsis?
