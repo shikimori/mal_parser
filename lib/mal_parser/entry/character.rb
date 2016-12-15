@@ -36,7 +36,7 @@ module MalParser
     end
 
     def parse_seyu seyu_doc
-      url = seyu_doc.css("a").first&.attr(:href)
+      url = seyu_doc.css('a').first&.attr(:href)
 
       {
         id: extract_id(url),
