@@ -6,6 +6,7 @@ module MalParser
       broadcast studios origin genres duration rating
       score ranked popularity members favorites synopsis related
     )
+    AIRED_FIELD = 'Aired'
 
     KIND = {
       'Movie' => :movie,
@@ -163,7 +164,7 @@ module MalParser
     end
 
     def dates
-      @dates ||= parse_line('Aired')
+      @dates ||= parse_line(self.class::AIRED_FIELD)
         .split(' to ')
         .map { |date| parse_date date }
     end

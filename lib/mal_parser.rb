@@ -15,6 +15,7 @@ module MalParser
   module Entry
     autoload :Base, 'mal_parser/entry/base'
     autoload :Anime, 'mal_parser/entry/anime'
+    autoload :Manga, 'mal_parser/entry/manga'
     autoload :Character, 'mal_parser/entry/character'
     autoload :Person, 'mal_parser/entry/person'
   end
