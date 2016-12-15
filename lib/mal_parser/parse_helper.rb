@@ -14,6 +14,10 @@ module MalParser
       'people' => :person,
       'character' => :character
     }
+    TYPE_REGEXP = %r{
+      (?: ^ | (?:https:)?//myanimelist.net)
+      /(?<type>#{TYPE.keys.join '|'})/
+    }mix
 
     def css *args
       @doc ||= Nokogiri::HTML html
@@ -73,7 +77,8 @@ module MalParser
     end
 
     def extract_type url
-      value = url.match(%r{^/(?<type>anime|manga|people)/})[:type]
+      value = $LAST_MATCH_INFO[:type] if url =~ TYPE_REGEXP
+
       TYPE[value] || explode!(:type, value)
     end
 
@@ -87,6 +92,14 @@ module MalParser
 
     def no_synopsis?
       NO_SYNOPSIS_TEXT.any? { |phrase| html.include? phrase }
+    end
+
+    def explode! param, value
+      raise UnexpectedValue,
+        klass: self.class,
+        id: @id,
+        param: param,
+        value: value
     end
   end
 end

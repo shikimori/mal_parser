@@ -28,13 +28,5 @@ module MalParser
     def type
       self.class.name.sub(/.*::/, '').downcase
     end
-
-    def explode! param, value
-      raise UnexpectedValue,
-        parser_klass: self.class,
-        id: @id,
-        param: param,
-        value: value
-    end
   end
 end

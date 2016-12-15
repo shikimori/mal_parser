@@ -2,7 +2,7 @@ describe MalParser::Entry::Anime do
   let(:parser) { MalParser::Entry::Anime.new id }
   let(:id) { 11_757 }
 
-  describe '#call', :vcr, :focus do
+  describe '#call', :vcr do
     subject! { parser.call }
 
     it do

@@ -20,8 +20,9 @@ module MalParser
   end
 
   class UnexpectedValue < StandardError
-    def initialize parser_klass:, id:, param:, value:
-      super "Unexpected #{param} `#{value}` for #{parser_klass.name} id=#{id}"
+    def initialize klass:, param:, value:, id: nil
+      id_text = " id=#{id}" if id
+      super "Unexpected #{param} `#{value}` for #{klass.name}#{id_text}"
     end
   end
 

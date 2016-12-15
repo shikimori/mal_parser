@@ -12,7 +12,9 @@ module MalParser
     }
 
     def call
-      css('table a.hoverinfo_trigger.fw-b').map { |node| extract_link node }
+      css('table a.hoverinfo_trigger.fw-b').map do |node|
+        parse_link node, with_type: true
+      end
     end
 
   private

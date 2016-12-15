@@ -22,7 +22,8 @@ describe MalParser::Catalog::Page do
           is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
           expect(results.first).to eq(
             id: 20_707,
-            name: '"0"'
+            name: '"0"',
+            type: :anime
           )
         end
       end
@@ -34,7 +35,8 @@ describe MalParser::Catalog::Page do
           is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
           expect(results.first).to eq(
             id: 85_868,
-            name: '!'
+            name: '!',
+            type: :manga
           )
         end
       end
@@ -48,7 +50,7 @@ describe MalParser::Catalog::Page do
         expect(results.first).to eq(
           id: 5624,
           name: 'Biohazard 4D-Executer',
-          url: 'https://myanimelist.net/anime/5624/Biohazard_4D-Executer'
+          type: :anime
         )
       end
     end
@@ -61,7 +63,7 @@ describe MalParser::Catalog::Page do
         expect(results.first).to eq(
           id: 34_514,
           name: 'Pokemon Generations',
-          url: 'https://myanimelist.net/anime/34514/Pokemon_Generations'
+          type: :anime
         )
       end
     end

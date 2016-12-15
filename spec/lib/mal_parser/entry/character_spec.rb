@@ -2,7 +2,7 @@ describe MalParser::Entry::Character do
   let(:parser) { MalParser::Entry::Character.new id }
   let(:id) { 36_765 }
 
-  describe '#call', :vcr, :focus do
+  describe '#call', :vcr do
     subject! { parser.call }
 
     it do
