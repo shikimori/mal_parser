@@ -56,7 +56,7 @@ module MalParser
     end
 
     def synonyms
-      parse_line('Synonyms').split(',').map(&:strip)
+      parse_line('Synonyms')&.split(',')&.map(&:strip) || []
     end
 
     def kind
