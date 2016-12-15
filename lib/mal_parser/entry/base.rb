@@ -14,11 +14,11 @@ module MalParser
   private
 
     def name
-      doc.css('meta[property="og:title"]').first&.attr(:content)
+      css('meta[property="og:title"]').first&.attr(:content)
     end
 
     def image
-      doc.css('meta[property="og:image"]').first&.attr(:content)
+      css('meta[property="og:image"]').first&.attr(:content)
     end
 
     def url

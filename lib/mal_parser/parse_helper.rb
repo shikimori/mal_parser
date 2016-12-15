@@ -8,9 +8,16 @@ module MalParser
       'No biography written.',
       'No summary yet.'
     ]
+    TYPE = {
+      'anime' => :anime,
+      'manga' => :manga,
+      'people' => :person,
+      'character' => :character
+    }
 
-    def doc
+    def css *args
       @doc ||= Nokogiri::HTML html
+      @doc.css(*args)
     end
 
     def html
@@ -44,7 +51,7 @@ module MalParser
     end
 
     def dark_texts
-      @dark_texts ||= doc.css('span.dark_text')
+      @dark_texts ||= css('span.dark_text')
     end
 
     def parse_date date
@@ -66,7 +73,16 @@ module MalParser
     end
 
     def extract_type url
-      url.match(%r{^/(?<type>anime|manga)/})[:type].to_sym
+      value = url.match(%r{^/(?<type>anime|manga|people)/})[:type]
+      TYPE[value] || explode!(:type, value)
+    end
+
+    def fix_synopsis html
+      fixed_text = Nokogiri::HTML::DocumentFragment
+        .parse(html)
+        .to_html(save_with: ParseHelper::NOKOGIRI_SAVE_OPTIONS)
+
+      CGI.unescapeHTML(fixed_text) unless fixed_text&.empty?
     end
 
     def no_synopsis?

@@ -15,6 +15,7 @@ module MalParser
   module Entry
     autoload :Base, 'mal_parser/entry/base'
     autoload :Anime, 'mal_parser/entry/anime'
+    autoload :Character, 'mal_parser/entry/character'
   end
 
   class UnexpectedValue < StandardError

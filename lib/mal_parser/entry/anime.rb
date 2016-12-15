@@ -146,12 +146,7 @@ module MalParser
 
     def synopsis
       return if no_synopsis?
-
-      fixed_text = Nokogiri::HTML::DocumentFragment
-        .parse(parse_synopsis)
-        .to_html(save_with: ParseHelper::NOKOGIRI_SAVE_OPTIONS)
-
-      CGI.unescapeHTML(fixed_text) unless fixed_text&.empty?
+      fix_synopsis parse_synopsis
     end
 
     def related
@@ -174,11 +169,11 @@ module MalParser
     end
 
     def parse_synopsis
-      doc.css('span[itemprop="description"]').first&.text
+      css('span[itemprop="description"]').first&.text
     end
 
     def parse_related
-      doc.css('table.anime_detail_related_anime tr')
+      css('table.anime_detail_related_anime tr')
     end
   end
 end
