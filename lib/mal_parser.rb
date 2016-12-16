@@ -19,6 +19,7 @@ module MalParser
     autoload :Character, 'mal_parser/entry/character'
     autoload :Person, 'mal_parser/entry/person'
     autoload :Characters, 'mal_parser/entry/characters'
+    autoload :Recommendations, 'mal_parser/entry/recommendations'
   end
 
   class UnexpectedValue < StandardError
