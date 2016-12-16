@@ -110,5 +110,10 @@ describe MalParser::Entry::Anime do
         ]
       end
     end
+
+    describe 'record not found' do
+      let(:id) { 999_999_999 }
+      it { expect { subject }.to raise_error MalParser::RecordNotFound }
+    end
   end
 end

@@ -4,7 +4,7 @@ describe MalParser::Entry::Characters do
   let(:type) { :anime }
 
   describe '#call', :vcr do
-    subject! { parser.call }
+    subject { parser.call }
 
     it do
       is_expected.to eq(
@@ -60,6 +60,11 @@ describe MalParser::Entry::Characters do
           }
         ]
       )
+    end
+
+    describe 'record not found' do
+      let(:id) { 999_999_999 }
+      it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
   end
 end

@@ -33,6 +33,12 @@ module MalParser
 
     def html
       @html ||= MalParser.configuration.http_get.call url
+
+      if @html.nil? || @html =~ /<div class="badresult">Invalid ID provided/
+        raise RecordNotFound
+      else
+        @html
+      end
     end
 
     def parse_line text

@@ -22,6 +22,9 @@ module MalParser
     autoload :Recommendations, 'mal_parser/entry/recommendations'
   end
 
+  class RecordNotFound < StandardError
+  end
+
   class UnexpectedValue < StandardError
     def initialize klass:, param:, value:, id: nil
       id_text = " id=#{id}" if id

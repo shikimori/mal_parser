@@ -21,6 +21,8 @@ Style/WordArray:
   Exclude:
     - spec/**/*
 
+Style/GuardClause:
+  Enabled: false
 Style/Documentation:
   Enabled: false
 Style/MethodDefParentheses:

@@ -3,7 +3,7 @@ describe MalParser::Entry::Person do
   let(:id) { 11 }
 
   describe '#call', :vcr do
-    subject! { parser.call }
+    subject { parser.call }
 
     it do
       is_expected.to eq(
@@ -14,6 +14,11 @@ describe MalParser::Entry::Person do
         website: nil,
         birthday: Date.parse('1961-06-17')
       )
+    end
+
+    describe 'record not found' do
+      let(:id) { 999_999_999 }
+      it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
   end
 end
