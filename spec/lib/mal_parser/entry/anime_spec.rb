@@ -20,7 +20,7 @@ describe MalParser::Entry::Anime do
         released_on: Date.parse('2012-12-23'),
         broadcast: 'Sundays at 00:00 (JST)',
         studios: [{ id: 56, name: 'A-1 Pictures' }],
-        origin: 'Light novel',
+        origin: :light_novel,
         genres: [
           {
             id: 1,
@@ -74,7 +74,7 @@ describe MalParser::Entry::Anime do
       )
     end
 
-    describe 'external_links', :focus do
+    describe 'external_links' do
       let(:id) { 32_281 }
 
       before { MalParser.configuration.http_get = get_with_cookie }

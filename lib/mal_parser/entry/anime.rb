@@ -97,7 +97,7 @@ module MalParser
     end
 
     def origin
-      parse_line('Source')
+      (parse_line('Source') || 'unknown').downcase.tr(' ', '_').to_sym
     end
 
     def genres
