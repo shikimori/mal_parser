@@ -13,11 +13,11 @@ module MalParser
   private
 
     def japanese
-      css('.breadcrumb + .normal_header span').text.gsub(/[()]/, '')
+      at_css('.breadcrumb + .normal_header span').text.gsub(/[()]/, '')
     end
 
     def fullname
-      css('h1').text.gsub('  ', ' ')
+      at_css('h1').text.gsub('  ', ' ')
     end
 
     def seyu
@@ -32,16 +32,16 @@ module MalParser
     end
 
     def parse_synopsis
-      css('#content > table > tr > td:nth-child(2)').to_html
+      at_css('#content > table > tr > td:nth-child(2)').to_html
     end
 
     def parse_seyu seyu_doc
-      url = seyu_doc.css('a').first&.attr(:href)
+      url = seyu_doc.at_css('a')&.attr(:href)
 
       {
         id: extract_id(url),
         type: extract_type(url),
-        role: seyu_doc.css('small').text
+        role: seyu_doc.at_css('small').text
       }
     end
   end

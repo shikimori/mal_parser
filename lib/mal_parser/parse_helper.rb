@@ -19,9 +19,16 @@ module MalParser
       /(?<type>#{TYPE.keys.join '|'})/
     }mix
 
-    def css *args
+    def doc
       @doc ||= Nokogiri::HTML html
-      @doc.css(*args)
+    end
+
+    def css selector
+      doc.css selector
+    end
+
+    def at_css selector
+      doc.at_css selector
     end
 
     def html

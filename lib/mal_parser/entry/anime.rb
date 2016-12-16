@@ -5,6 +5,7 @@ module MalParser
       english japanese synonyms kind episodes status aired_on released_on
       broadcast studios origin genres duration rating
       score ranked popularity members favorites synopsis related
+      external_links
     )
     AIRED_FIELD = 'Aired'
 
@@ -163,6 +164,18 @@ module MalParser
       end
     end
 
+    def external_links
+      at_css('table td h2:contains("External Links")')
+        &.next_element
+        &.css('a')
+        &.map do |v|
+          {
+            source: v.text.delete(' ').gsub(/(?<!^)([A-Z]+)/, '_\1').downcase,
+            url: v.attr(:href)
+          }
+        end
+    end
+
     def dates
       @dates ||= parse_line(self.class::AIRED_FIELD)
         .split(' to ')
@@ -170,7 +183,7 @@ module MalParser
     end
 
     def parse_synopsis
-      css('span[itemprop="description"]').first&.text
+      at_css('span[itemprop="description"]')&.text
     end
 
     def parse_related
