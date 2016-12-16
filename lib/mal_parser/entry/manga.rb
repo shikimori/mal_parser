@@ -1,4 +1,3 @@
-# rubocop:disable ClassLength
 module MalParser
   class Entry::Manga < Entry::Anime
     FIELDS = Entry::Base::FIELDS + %i(
@@ -38,7 +37,4 @@ module MalParser
       parse_links('Serialization')
     end
   end
-
-
 end
-# rubocop:enable ClassLength

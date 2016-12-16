@@ -11,6 +11,9 @@ MalParser::Catalog::Page.call type: 'manga', page: 0, sorting: 'name'
 # get anime id=1
 MalParser::Entry::Anime.call 1
 
+# get anime id=1 characters
+MalParser::Entry::Characters.new 1, :anime
+
 # get manga id=1
 MalParser::Entry::Manga.call 1
 
