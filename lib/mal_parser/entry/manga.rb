@@ -17,7 +17,7 @@ module MalParser
     }
     STATUS = {
       'Not yet aired' => :anons,
-      'Currently Airing' => :ongoing,
+      'Publishing' => :ongoing,
       'Finished' => :released
     }
 
