@@ -111,6 +111,11 @@ describe MalParser::Entry::Anime do
       end
     end
 
+    describe 'none studios found' do
+      let(:id) { 34_746 }
+      it { expect(subject[:studios]).to eq [] }
+    end
+
     describe 'record not found' do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }

@@ -50,11 +50,13 @@ module MalParser
     end
 
     def parse_links text
-      dark_texts
-        .find { |v| v.text.start_with? "#{text}:" }
-        &.parent
-        &.css('a')
-        &.map { |node| parse_link node }
+      node = dark_texts.find { |v| v.text.start_with? "#{text}:" }&.parent
+
+      if !node || node.text =~ /None found/
+        []
+      else
+        node&.css('a')&.map { |node| parse_link node }
+      end
     end
 
     def parse_link node, with_type: false
