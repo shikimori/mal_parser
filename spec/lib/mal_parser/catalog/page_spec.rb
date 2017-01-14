@@ -48,8 +48,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 5624,
-          name: 'Biohazard 4D-Executer',
+          id: 750,
+          name: 'Binchou-tan',
           type: :anime
         )
       end
@@ -61,8 +61,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 34_514,
-          name: 'Pokemon Generations',
+          id: 34_759,
+          name: 'Green Eyes: Ane Kyun! yori The Animation',
           type: :anime
         )
       end

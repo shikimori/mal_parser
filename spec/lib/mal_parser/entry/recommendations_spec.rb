@@ -18,10 +18,13 @@ describe MalParser::Entry::Recommendations do
           id: 13_673,
           type: :anime
         }, {
-          id: 25_835,
+          id: 31_953,
           type: :anime
         }, {
           id: 16_662,
+          type: :anime
+        }, {
+          id: 25_835,
           type: :anime
         }
       ]

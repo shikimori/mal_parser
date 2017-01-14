@@ -55,7 +55,7 @@ module MalParser
       if !node || node.text =~ /None found/
         []
       else
-        node&.css('a')&.map { |node| parse_link node }
+        node&.css('a')&.map { |v| parse_link v }
       end
     end
 
