@@ -60,5 +60,22 @@ describe MalParser::Entry::Character do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
+
+    describe 'no japanese, no seyu' do
+      let(:id) { 28_754 }
+      it do
+        is_expected.to eq(
+          id: id,
+          name: 'Ji-hoo Min',
+          image: 'https://myanimelist.cdn-dena.com/images/characters/13/74084.jpg',
+          japanese: nil,
+          fullname: 'Ji-hoo Min',
+          seyu: [],
+          synopsis: <<-HTML.strip
+            His mother runs the boarding house that Jae-yoo was interested in moving in to. He firsts meets Jae-yoo after a fight with Kang Tae-il, although he's hiding out behind a light poll watching her confess to Hyun-woo. They meet again at Dong-joo's and Jae-yoo's blind date, and he is uncertain of where he's seen her before. He immediate insults her and leaves. Later, when the date doesn't end well, to protect his friend, he calls her up to confront her. When he realizes Jae-yoo's the new boarder, he asks his mom to kick her out. Every time they see each other they fight.<br>\r\n<br>\r\nHis first love/girlfriend dumped him for Kang Tae-il. They were together since middle school. She watched him get beaten up by Tae-il and then left him. Tae-il ended up finding a new girlfriend, and she came back to Ji-hoo so they could start over. But Ji-hoo didn't take her back. The ex-girlfriend eventually left Korea. Because of this, he finds it hard to find another girlfriend. Also, Tae-il becomes his rival, so Ji-hoo is always fighting with the Inpyoung gang as his way of revenge. He's now known as the \"iljin\" (top gang leader) at the school.<br>\r\n<br>\r\nThe only way he trusts Jae-yoo is if she tells him she likes him (asking her to repeat what she said). He needs the confirmation, because he constantly worries she's cheating on him (the scars of a broken heart).<br>\r\n<br>\r\n(Wikipedia)<br>
+          HTML
+        )
+      end
+    end
   end
 end

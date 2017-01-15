@@ -13,7 +13,7 @@ module MalParser
   private
 
     def japanese
-      at_css('.breadcrumb + .normal_header span').text.gsub(/[()]/, '')
+      at_css('.breadcrumb + .normal_header span')&.text&.gsub(/[()]/, '')
     end
 
     def fullname
