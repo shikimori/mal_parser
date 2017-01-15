@@ -18,6 +18,7 @@ module MalParser
       (?: ^ | (?:https:)?//myanimelist.net)
       /(?<type>#{TYPE.keys.join '|'})/
     }mix
+    INVALID_ID_REGEXP = /<div class="badresult">Invalid ID provided/
 
     def doc
       @doc ||= Nokogiri::HTML html
@@ -34,7 +35,7 @@ module MalParser
     def html
       @html ||= MalParser.configuration.http_get.call url
 
-      if @html.nil? || @html =~ /<div class="badresult">Invalid ID provided/
+      if @html.nil? || @html =~ INVALID_ID_REGEXP
         raise RecordNotFound
       else
         @html
