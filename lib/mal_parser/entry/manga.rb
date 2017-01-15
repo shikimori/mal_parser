@@ -15,7 +15,7 @@ module MalParser
       'Manhwa' => :manhwa,
       'Novel' => :novel,
       'One Shot' => :one_shot,
-      'One-Shot' => :one_shot
+      'One-shot' => :one_shot
     }
     STATUS = {
       'Not yet aired' => :anons,
