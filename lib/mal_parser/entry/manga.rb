@@ -9,16 +9,19 @@ module MalParser
 
     KIND = {
       'Doujin' => :doujin,
+      'Doujinshi' => :doujin,
       'Manga' => :manga,
       'Manhua' => :manhua,
       'Manhwa' => :manhwa,
       'Novel' => :novel,
-      'One Shot' => :one_shot
+      'One Shot' => :one_shot,
+      'One-Shot' => :one_shot
     }
     STATUS = {
-      'Not yet aired' => :anons,
-      'Publishing' => :ongoing,
       'Finished' => :released
+      'Not yet aired' => :anons,
+      'Not yet published' => :anons,
+      'Publishing' => :ongoing,
     }
 
   private
