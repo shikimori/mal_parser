@@ -3,12 +3,16 @@ module MalParser
     include ParseHelper
     method_object :id, :type
 
-    NO_CHARACTERS_1 = 'Add staff</a> for this anime'
-    NO_CHARACTERS_2 = 'Edit Manga Information'
+    NO_CHARACTERS = [
+      'Add staff</a> for this anime',
+      'No staff for this anime',
+      'Edit Manga Information',
+      'No staff for this manga'
+    ]
 
     def call
       characters_doc = doc.css('div#content > table tr > td > div > table')
-      unless html.include?(NO_CHARACTERS_1) || html.include?(NO_CHARACTERS_2)
+      unless NO_CHARACTERS.any? { |phrase| html.include? phrase }
         staff_doc = characters_doc.pop
       end
 
@@ -21,15 +25,20 @@ module MalParser
   private
 
     def extract_characters doc
-      doc.map { |role_doc| parse_role role_doc.css('td')[1] }
+      doc
+        .map { |role_doc| parse_role role_doc.css('td')[1] }
+        .compact
     end
 
     def extract_staff doc
-      doc.css('tr td:last').map { |node| parse_role node }
+      doc.css('tr td:last')
+        .map { |node| parse_role node }
+        .compact
     end
 
     def parse_role node
       link = node.at_css('a')
+      return unless link
 
       {
         id: extract_id(link.attr(:href)),

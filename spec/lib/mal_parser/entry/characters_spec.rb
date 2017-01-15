@@ -66,5 +66,18 @@ describe MalParser::Entry::Characters do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
+
+    describe 'no roles' do
+      let(:id) { 34_312 }
+      it do
+        is_expected.to eq(
+          characters: [{
+            id: 126_511,
+            role: 'Main'
+          }],
+          staff: []
+        )
+      end
+    end
   end
 end
