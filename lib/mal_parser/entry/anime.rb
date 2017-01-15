@@ -62,7 +62,7 @@ module MalParser
 
     def kind
       value = parse_line('Type')
-      return if !value || value.empty? || value == 'unknown'
+      return if !value || value.empty? || value.downcase == 'unknown'
 
       self.class::KIND[value] || explode!(:kind, value)
     end
