@@ -18,10 +18,10 @@ module MalParser
       'One-Shot' => :one_shot
     }
     STATUS = {
-      'Finished' => :released
       'Not yet aired' => :anons,
       'Not yet published' => :anons,
       'Publishing' => :ongoing,
+      'Finished' => :released
     }
 
   private
