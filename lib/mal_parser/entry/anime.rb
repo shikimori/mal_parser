@@ -170,7 +170,7 @@ module MalParser
         &.css('a')
         &.map do |v|
           {
-            source: v.text.delete(' ').gsub(/(?<!^)([A-Z]+)/, '_\1').downcase,
+            kind: v.text.delete(' ').gsub(/(?<!^)([A-Z]+)/, '_\1').downcase,
             url: v.attr(:href)
           }
         end

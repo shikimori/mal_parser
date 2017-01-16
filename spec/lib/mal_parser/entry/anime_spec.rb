@@ -95,16 +95,16 @@ describe MalParser::Entry::Anime do
       it do
         expect(subject[:external_links]).to eq [
           {
-            source: 'official_site',
+            kind: 'official_site',
             url: 'http://www.kiminona.com/'
           }, {
-            source: 'anime_db',
+            kind: 'anime_db',
             url: 'http://anidb.info/perl-bin/animedb.pl?show=anime&aid=11829'
           }, {
-            source: 'anime_news_network',
+            kind: 'anime_news_network',
             url: 'http://www.animenewsnetwork.com/encyclopedia/anime.php?id=18171'
           }, {
-            source: 'wikipedia',
+            kind: 'wikipedia',
             url: 'http://ja.wikipedia.org/wiki/%E5%90%9B%E3%81%AE%E5%90%8D%E3%81%AF%E3%80%82'
           }
         ]
