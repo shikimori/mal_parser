@@ -120,5 +120,37 @@ describe MalParser::Entry::Anime do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
+
+    describe 'missing related' do
+      let(:id) { 157 }
+      it do
+        expect(subject[:related]).to eq(
+          adaptation: [{
+            id: 15,
+            name: 'Mahou Sensei Negima!',
+            type: :manga
+          }],
+          alternative_version: [{
+            id: 1_546,
+            name: 'Negima!?',
+            type: :anime
+          }],
+          alternative_setting: [{
+            id: 3_948,
+            name: 'Mahou Sensei Negima! Introduction Film',
+            type: :anime
+          }, {
+            id: 4_188,
+            name: 'Mahou Sensei Negima! Shiroki Tsubasa Ala Alba',
+            type: :anime
+          }],
+          sequel: [{
+            id: 33_478,
+            name: 'UQ Holder!',
+            type: :anime
+          }]
+        )
+      end
+    end
   end
 end

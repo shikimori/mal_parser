@@ -159,6 +159,7 @@ module MalParser
 
         memo[relation] = tds.last
           .css('a')
+          .select { |link| link.text != '' }
           .map { |link| parse_link link, with_type: true }
           .compact
       end
