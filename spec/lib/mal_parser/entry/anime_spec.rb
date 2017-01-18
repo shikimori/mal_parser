@@ -152,5 +152,23 @@ describe MalParser::Entry::Anime do
         )
       end
     end
+
+    describe 'duplicate genres' do
+      let(:id) { 28_367 }
+      it do
+        expect(subject[:genres]).to eq [
+          {
+            id: 24,
+            name: 'Sci-Fi'
+          }, {
+            id: 4,
+            name: 'Comedy'
+          }, {
+            id: 27,
+            name: 'Shounen'
+          }
+        ]
+      end
+    end
   end
 end
