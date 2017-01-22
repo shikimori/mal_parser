@@ -20,5 +20,10 @@ describe MalParser::Entry::Person do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
+
+    describe 'website' do
+      let(:id) { 869 }
+      it { expect(subject[:website]).to eq 'http://whv-amusic.com/hayamisaori/' }
+    end
   end
 end

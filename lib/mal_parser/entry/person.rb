@@ -14,8 +14,11 @@ module MalParser
     end
 
     def website
-      value = parse_line 'Website'
-      value if value && !value.empty?
+      link = dark_texts
+        .find { |v| v.text.start_with? 'Website' }
+        &.next&.next&.attr(:href)
+
+      link if link && link != ''
     end
 
     def birthday
