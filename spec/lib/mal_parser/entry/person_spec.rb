@@ -25,5 +25,10 @@ describe MalParser::Entry::Person do
       let(:id) { 869 }
       it { expect(subject[:website]).to eq 'http://whv-amusic.com/hayamisaori/' }
     end
+
+    describe 'no year in birthday' do
+      let(:id) { 10929 }
+      it { expect(subject[:birthday]).to eq Date.parse('1901-06-01') }
+    end
   end
 end
