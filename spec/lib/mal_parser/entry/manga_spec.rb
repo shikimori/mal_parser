@@ -39,9 +39,9 @@ describe MalParser::Entry::Manga do
           }
         ],
         score: 7.67,
-        ranked: 14_744,
-        popularity: 23_749,
-        members: 63,
+        ranked: 14_953,
+        popularity: 23_805,
+        members: 68,
         favorites: 0,
         related: {},
         synopsis: <<-TEXT.strip

@@ -151,6 +151,7 @@ module MalParser
       fix_synopsis parse_synopsis
     end
 
+    # rubocop:disable AbcSize
     def related
       parse_related.each_with_object({}) do |tr, memo|
         tds = tr.css('td')
@@ -164,6 +165,7 @@ module MalParser
           .compact
       end
     end
+    # rubocop:enable AbcSize
 
     def external_links
       at_css('table td h2:contains("External Links")')

@@ -27,7 +27,7 @@ describe MalParser::Entry::Person do
     end
 
     describe 'no year in birthday' do
-      let(:id) { 10929 }
+      let(:id) { 10_929 }
       it { expect(subject[:birthday]).to eq Date.parse('1901-06-01') }
     end
   end

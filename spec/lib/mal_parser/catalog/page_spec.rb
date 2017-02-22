@@ -48,8 +48,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 750,
-          name: 'Binchou-tan',
+          id: 27_727,
+          name: 'Binan Koukou Chikyuu Bouei-bu LOVE!',
           type: :anime
         )
       end
@@ -61,8 +61,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 34_759,
-          name: 'Green Eyes: Ane Kyun! yori The Animation',
+          id: 34_943,
+          name: 'Harukaze: You were here',
           type: :anime
         )
       end

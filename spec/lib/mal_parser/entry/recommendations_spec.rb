@@ -12,6 +12,9 @@ describe MalParser::Entry::Recommendations do
           id: 28_735,
           type: :anime
         }, {
+          id: 16_662,
+          type: :anime
+        }, {
           id: 31_771,
           type: :anime
         }, {
@@ -19,9 +22,6 @@ describe MalParser::Entry::Recommendations do
           type: :anime
         }, {
           id: 31_953,
-          type: :anime
-        }, {
-          id: 16_662,
           type: :anime
         }, {
           id: 25_835,

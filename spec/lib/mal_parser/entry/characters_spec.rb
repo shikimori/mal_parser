@@ -22,13 +22,22 @@ describe MalParser::Entry::Characters do
             id: 145_176,
             role: 'Supporting'
           }, {
+            id: 146_556,
+            role: 'Supporting'
+          }, {
             id: 145_177,
+            role: 'Supporting'
+          }, {
+            id: 146_710,
             role: 'Supporting'
           }, {
             id: 145_678,
             role: 'Supporting'
           }, {
             id: 145_178,
+            role: 'Supporting'
+          }, {
+            id: 147_822,
             role: 'Supporting'
           }
         ],

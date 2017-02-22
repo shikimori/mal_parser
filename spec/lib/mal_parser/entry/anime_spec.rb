@@ -41,11 +41,11 @@ describe MalParser::Entry::Anime do
         ],
         duration: 23,
         rating: :pg_13,
-        score: 7.83,
-        ranked: 807,
+        score: 7.79,
+        ranked: 882,
         popularity: 3,
-        members: 892_811,
-        favorites: 40_900,
+        members: 949_955,
+        favorites: 42_313,
         related: {
           adaptation: [{
             id: 21_479,
