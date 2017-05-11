@@ -10,9 +10,6 @@ describe MalParser::Entry::Characters do
       is_expected.to eq(
         characters: [
           {
-            id: 143_628,
-            role: 'Main'
-          }, {
             id: 139_108,
             role: 'Main'
           }, {
@@ -22,10 +19,22 @@ describe MalParser::Entry::Characters do
             id: 145_176,
             role: 'Supporting'
           }, {
+            id: 143_628,
+            role: 'Supporting'
+          }, {
+            id: 149_108,
+            role: 'Supporting'
+          }, {
+            id: 149_106,
+            role: 'Supporting'
+          }, {
             id: 146_556,
             role: 'Supporting'
           }, {
             id: 145_177,
+            role: 'Supporting'
+          }, {
+            id: 149_102,
             role: 'Supporting'
           }, {
             id: 146_710,
@@ -34,10 +43,25 @@ describe MalParser::Entry::Characters do
             id: 145_678,
             role: 'Supporting'
           }, {
+            id: 149_105,
+            role: 'Supporting'
+          }, {
+            id: 149_103,
+            role: 'Supporting'
+          }, {
+            id: 149_107,
+            role: 'Supporting'
+          }, {
             id: 145_178,
             role: 'Supporting'
           }, {
+            id: 149_109,
+            role: 'Supporting'
+          }, {
             id: 147_822,
+            role: 'Supporting'
+          }, {
+            id: 149_104,
             role: 'Supporting'
           }
         ],

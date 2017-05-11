@@ -41,30 +41,30 @@ describe MalParser::Entry::Anime do
         ],
         duration: 23,
         rating: :pg_13,
-        score: 7.79,
-        ranked: 882,
+        score: 7.77,
+        ranked: 936,
         popularity: 3,
-        members: 949_955,
-        favorites: 42_313,
+        members: 1_006_734,
+        favorites: 43_699,
         related: {
           adaptation: [{
             id: 21_479,
-            type: :manga,
-            name: 'Sword Art Online'
+            name: 'Sword Art Online',
+            type: :manga
           }, {
             id: 43_921,
-            type: :manga,
-            name: 'Sword Art Online: Progressive'
+            name: 'Sword Art Online: Progressive',
+            type: :manga
           }],
           other: [{
             id: 16_099,
-            type: :anime,
-            name: 'Sword Art Online: Sword Art Offline'
+            name: 'Sword Art Online: Sword Art Offline',
+            type: :anime
           }],
           sequel: [{
             id: 20_021,
-            type: :anime,
-            name: 'Sword Art Online: Extra Edition'
+            name: 'Sword Art Online: Extra Edition',
+            type: :anime
           }]
         },
         external_links: nil,
@@ -144,9 +144,14 @@ describe MalParser::Entry::Anime do
             name: 'Mahou Sensei Negima! Shiroki Tsubasa Ala Alba',
             type: :anime
           }],
+          other: [{
+            id: 34_450,
+            name: 'Mahou Sensei Negima! Tokubetsu Eizou',
+            type: :anime
+          }],
           sequel: [{
             id: 33_478,
-            name: 'UQ Holder!',
+            name: 'UQ Holder!: Mahou Sensei Negima! 2',
             type: :anime
           }]
         )
