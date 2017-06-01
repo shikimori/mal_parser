@@ -14,7 +14,7 @@ module MalParser
   private
 
     def name
-      css('meta[property="og:title"]').first&.attr(:content)
+      css('meta[property="og:title"]').first&.attr(:content)&.strip
     end
 
     def image

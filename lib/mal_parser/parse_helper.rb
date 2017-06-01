@@ -47,7 +47,7 @@ module MalParser
       return unless node
 
       text = node.text.strip
-      text.empty? ? node.next&.text&.strip : text
+      text.empty? && node.next&.name != 'div' ? node.next&.text&.strip : text
     end
 
     def parse_links text

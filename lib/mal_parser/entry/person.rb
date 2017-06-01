@@ -10,7 +10,7 @@ module MalParser
       family_name = parse_line('Family name')
       given_name = parse_line('Given name')
 
-      "#{family_name} #{given_name}" if family_name && !family_name.empty?
+      "#{family_name} #{given_name}".strip
     end
 
     def website
