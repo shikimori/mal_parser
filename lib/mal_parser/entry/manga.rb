@@ -4,6 +4,7 @@ module MalParser
       english japanese synonyms kind volumes chapters status
       aired_on released_on publishers genres
       score ranked popularity members favorites synopsis related
+      external_links
     )
     AIRED_FIELD = 'Published'
 
