@@ -8,7 +8,7 @@ module MalParser
 
       {
         characters: extract_roles(roles_doc, 'character'),
-        staff: extract_roles(roles_doc, 'people')
+        staff: extract_author_roles + extract_roles(roles_doc, 'people')
       }
     end
 
@@ -28,6 +28,20 @@ module MalParser
         id: extract_id(url),
         role: node.css('small').text
       }
+    end
+
+    def extract_author_roles
+      links = dark_texts
+        .find { |v| v.text.start_with? 'Authors:' }&.parent&.css('a')
+
+      return [] unless links
+
+      links.map do |v|
+        {
+          id: parse_link(v)[:id],
+          role: v.next.text.strip.gsub(/[()]|,$/, '')
+        }
+      end
     end
 
     def url

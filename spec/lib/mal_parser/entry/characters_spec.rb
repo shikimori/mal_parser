@@ -1,98 +1,44 @@
 describe MalParser::Entry::Characters do
   let(:parser) { MalParser::Entry::Characters.new id, type }
-  let(:id) { 32_948 }
   let(:type) { :anime }
 
   describe '#call', :vcr do
-    subject { parser.call }
+    subject(:characters) { parser.call }
 
-    it do
-      is_expected.to eq(
-        characters: [
-          {
-            id: 139_108,
-            role: 'Main'
-          }, {
-            id: 139_109,
-            role: 'Main'
-          }, {
-            id: 145_176,
-            role: 'Supporting'
-          }, {
-            id: 143_628,
-            role: 'Supporting'
-          }, {
-            id: 149_108,
-            role: 'Supporting'
-          }, {
-            id: 149_106,
-            role: 'Supporting'
-          }, {
-            id: 146_556,
-            role: 'Supporting'
-          }, {
-            id: 145_177,
-            role: 'Supporting'
-          }, {
-            id: 149_102,
-            role: 'Supporting'
-          }, {
-            id: 146_710,
-            role: 'Supporting'
-          }, {
-            id: 145_678,
-            role: 'Supporting'
-          }, {
-            id: 149_105,
-            role: 'Supporting'
-          }, {
-            id: 149_103,
-            role: 'Supporting'
-          }, {
-            id: 149_107,
-            role: 'Supporting'
-          }, {
-            id: 145_178,
-            role: 'Supporting'
-          }, {
-            id: 149_109,
-            role: 'Supporting'
-          }, {
-            id: 147_822,
-            role: 'Supporting'
-          }, {
-            id: 149_104,
-            role: 'Supporting'
-          }
-        ],
-        staff: [
-          {
-            id: 33_365,
-            role: 'Director'
-          }, {
-            id: 30_337,
-            role: 'Sound Director'
-          }, {
-            id: 40_790,
-            role: 'Theme Song Performance'
-          }, {
-            id: 40_122,
-            role: 'Character Design'
-          }, {
-            id: 6_573,
-            role: 'Music'
-          }, {
-            id: 9_622,
-            role: 'Original Character Design'
-          }, {
-            id: 29_447,
-            role: 'Original Creator'
-          }, {
-            id: 9_572,
-            role: 'Series Composition'
-          }
-        ]
-      )
+    context 'anime' do
+      let(:id) { 32_948 }
+      it do
+        expect(characters).to have(2).items
+        expect(characters[:characters]).to have(18).items
+        expect(characters[:characters].first).to eq(
+          id: 139_108,
+          role: 'Main'
+        )
+        expect(characters[:staff]).to have(8).items
+        expect(characters[:staff].first).to eq(
+          id: 33_365,
+          role: 'Director'
+        )
+      end
+    end
+
+    context 'manga' do
+      let(:type) { :manga }
+      let(:id) { 55_215 }
+
+      it do
+        expect(characters).to have(2).items
+        expect(characters[:characters]).to have(19).items
+        expect(characters[:characters].first).to eq(
+          id: 87_719,
+          role: 'Main'
+        )
+        expect(characters[:staff]).to have(2).items
+        expect(characters[:staff].first).to eq(
+          id: 23_549,
+          role: 'Story'
+        )
+      end
     end
 
     describe 'record not found' do
