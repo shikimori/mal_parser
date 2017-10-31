@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
   Exclude:
     - bin/*
     - Guardfile
@@ -11,33 +11,47 @@ AllCops:
   UseCache: false
 
 Metrics/LineLength:
+  AllowURI: true
+  IgnoreCopDirectives: true
+  IgnoredPatterns: ['\A\ *#']
   Exclude:
     - spec/**/*
-
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+  ExcludedMethods:
+    - state_machine
 Style/NestedParenthesizedCalls:
   Exclude:
     - spec/**/*
 Style/WordArray:
   Exclude:
     - spec/**/*
+Style/NumericLiterals:
+  Exclude:
+    - spec/**/*
 
+Style/MultilineBlockChain:
+  Enabled: false
+# Style/NumericPredicate:
+  # Enabled: false
 Style/GuardClause:
   Enabled: false
 Style/Documentation:
   Enabled: false
 Style/MethodDefParentheses:
   Enabled: false
-Style/MultilineOperationIndentation:
+Layout/MultilineOperationIndentation:
   Enabled: false
-Style/CommentIndentation:
+Layout/CommentIndentation:
   Enabled: false
-Style/AccessModifierIndentation:
+Layout/AccessModifierIndentation:
+  Enabled: false
+Layout/CaseIndentation:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/DoubleNegation:
-  Enabled: false
-Style/CaseIndentation:
   Enabled: false
 Style/AsciiComments:
   Enabled: false
@@ -45,15 +59,19 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/MutableConstant:
   Enabled: false
-Style/AlignParameters:
+Style/EmptyMethod:
   Enabled: false
-Style/MultilineMethodCallIndentation:
+Layout/AlignParameters:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
   Enabled: false
 Style/EmptyCaseCondition:
   Enabled: false
 Style/MultilineTernaryOperator:
   Enabled: false
 Lint/EndAlignment:
+  Enabled: false
+Lint/HandleExceptions:
   Enabled: false
 
 Style/StringLiterals:
@@ -73,7 +91,7 @@ Style/StringLiteralsInInterpolation:
   - single_quotes
   - double_quotes
 
-Style/DotPosition:
+Layout/DotPosition:
   Description: Checks the position of the dot in multi-line method calls.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains
   Enabled: true
