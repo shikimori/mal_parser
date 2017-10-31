@@ -1,12 +1,12 @@
 # rubocop:disable ClassLength
 module MalParser
   class Entry::Anime < Entry::Base
-    FIELDS = Entry::Base::FIELDS + %i(
+    FIELDS = Entry::Base::FIELDS + %i[
       english japanese synonyms kind episodes status aired_on released_on
       broadcast studios origin genres duration rating
       score ranked popularity members favorites synopsis related
-      external_links
-    )
+      external_links season
+    ]
     AIRED_FIELD = 'Aired'
 
     KIND = {
@@ -77,6 +77,10 @@ module MalParser
       return if !value || value.empty?
 
       self.class::STATUS[value] || explode!(:status, value)
+    end
+
+    def season
+      parse_line('Premiered')&.downcase&.gsub(' ', '_')
     end
 
     def aired_on

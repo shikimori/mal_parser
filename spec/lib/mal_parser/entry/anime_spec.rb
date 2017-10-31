@@ -16,6 +16,7 @@ describe MalParser::Entry::Anime do
         kind: :tv,
         episodes: 25,
         status: :released,
+        season: 'summer_2012',
         aired_on: Date.parse('2012-07-08'),
         released_on: Date.parse('2012-12-23'),
         broadcast: 'Sundays at 00:00 (JST)',
