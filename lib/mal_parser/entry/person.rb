@@ -1,8 +1,8 @@
 module MalParser
   class Entry::Person < Entry::Base
-    FIELDS = Entry::Base::FIELDS + %i(
+    FIELDS = Entry::Base::FIELDS + %i[
       japanese website birthday
-    )
+    ]
 
   private
 

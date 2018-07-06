@@ -3,7 +3,7 @@ module MalParser
     include ParseHelper
 
     method_object :id
-    FIELDS = %i(id name image)
+    FIELDS = %i[id name image]
 
     def call
       self.class::FIELDS.each_with_object({}) do |field, memo|

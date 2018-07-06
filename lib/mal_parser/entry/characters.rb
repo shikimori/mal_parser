@@ -26,7 +26,7 @@ module MalParser
 
       {
         id: extract_id(url),
-        role: node.css('small').text
+        roles: node.css('small').text.split(', ')
       }
     end
 
@@ -39,7 +39,7 @@ module MalParser
       links.map do |v|
         {
           id: parse_link(v)[:id],
-          role: v.next.text.strip.gsub(/[()]|,$/, '')
+          roles: v.next.text.strip.gsub(/[()]|,$/, '').split(', ')
         }
       end
     end

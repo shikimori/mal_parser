@@ -1,8 +1,8 @@
 module MalParser
   class Entry::Character < Entry::Base
-    FIELDS = Entry::Base::FIELDS + %i(
+    FIELDS = Entry::Base::FIELDS + %i[
       japanese fullname seyu synopsis
-    )
+    ]
     SYNOPSYS_REGEXP = %r{
       <div \s class="normal_header" [\s\S]*? </div>
         (?<html> [\s\S]*? )
@@ -41,7 +41,7 @@ module MalParser
       {
         id: extract_id(url),
         type: extract_type(url),
-        role: seyu_doc.at_css('small').text
+        roles: seyu_doc.at_css('small').text.split(', ')
       }
     end
   end

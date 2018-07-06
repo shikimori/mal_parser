@@ -12,12 +12,12 @@ describe MalParser::Entry::Characters do
         expect(characters[:characters]).to have(18).items
         expect(characters[:characters].first).to eq(
           id: 139_108,
-          role: 'Main'
+          roles: %w[Main]
         )
         expect(characters[:staff]).to have(8).items
         expect(characters[:staff].first).to eq(
           id: 33_365,
-          role: 'Director'
+          roles: %w[Director]
         )
       end
     end
@@ -31,12 +31,12 @@ describe MalParser::Entry::Characters do
         expect(characters[:characters]).to have(19).items
         expect(characters[:characters].first).to eq(
           id: 87_719,
-          role: 'Main'
+          roles: %w[Main]
         )
         expect(characters[:staff]).to have(2).items
         expect(characters[:staff].first).to eq(
           id: 23_549,
-          role: 'Story'
+          roles: %w[Story]
         )
       end
     end
@@ -52,7 +52,7 @@ describe MalParser::Entry::Characters do
         is_expected.to eq(
           characters: [{
             id: 126_511,
-            role: 'Main'
+            roles: %w[Main]
           }],
           staff: []
         )
