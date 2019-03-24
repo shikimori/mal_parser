@@ -18,7 +18,7 @@ module MalParser
         .find { |v| v.text.start_with? 'Website' }
         &.next&.next&.attr(:href)
 
-      link if link && link != ''
+      link unless [nil, '', 'http://', 'https://'].include?(link)
     end
 
     def birthday

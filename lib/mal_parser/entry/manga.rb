@@ -1,11 +1,11 @@
 module MalParser
   class Entry::Manga < Entry::Anime
-    FIELDS = Entry::Base::FIELDS + %i(
+    FIELDS = Entry::Base::FIELDS + %i[
       english japanese synonyms kind volumes chapters status
       aired_on released_on publishers genres
       score ranked popularity members favorites synopsis related
       external_links
-    )
+    ]
     AIRED_FIELD = 'Published'
 
     KIND = {

@@ -13,7 +13,7 @@ describe MalParser::Entry::Base do
         is_expected.to eq(
           id: id,
           name: 'Cowboy Bebop',
-          image: 'https://myanimelist.cdn-dena.com/images/anime/4/19644.jpg'
+          image: 'https://cdn.myanimelist.net/images/anime/4/19644.jpg'
         )
       end
     end
@@ -26,7 +26,7 @@ describe MalParser::Entry::Base do
         is_expected.to eq(
           id: id,
           name: 'Monster',
-          image: 'https://myanimelist.cdn-dena.com/images/manga/3/54525.jpg'
+          image: 'https://cdn.myanimelist.net/images/manga/3/54525.jpg'
         )
       end
     end
@@ -39,7 +39,7 @@ describe MalParser::Entry::Base do
         is_expected.to eq(
           id: id,
           name: 'Spike Spiegel',
-          image: 'https://myanimelist.cdn-dena.com/images/characters/4/50197.jpg'
+          image: 'https://cdn.myanimelist.net/images/characters/4/50197.jpg'
         )
       end
     end
@@ -52,7 +52,7 @@ describe MalParser::Entry::Base do
         is_expected.to eq(
           id: id,
           name: 'Tomokazu Seki',
-          image: 'https://myanimelist.cdn-dena.com/images/voiceactors/3/44649.jpg'
+          image: 'https://cdn.myanimelist.net/images/voiceactors/1/55486.jpg'
         )
       end
     end

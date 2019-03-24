@@ -6,7 +6,7 @@ module MalParser
     SYNOPSYS_REGEXP = %r{
       <div \s class="normal_header" [\s\S]*? </div>
         (?<html> [\s\S]*? )
-      <div \s class="normal_header"
+      (<div \s class="normal_header"|<br><br><div \s style="padding:)
     }mix
     SEYU_SELECTOR = '.normal_header:contains("Voice Actors") ~ table tr td:last'
 

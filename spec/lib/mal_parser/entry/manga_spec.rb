@@ -9,7 +9,7 @@ describe MalParser::Entry::Manga do
       is_expected.to eq(
         id: id,
         name: 'Genryuu Butouden: Origin',
-        image: 'https://myanimelist.cdn-dena.com/images/manga/2/101429.jpg',
+        image: 'https://cdn.myanimelist.net/images/manga/2/101429.jpg',
         english: 'The Battle of Genryu: Origin',
         synonyms: ['Genryuu Butouten - Origin'],
         japanese: '源流武闘伝 -ORIGIN-',
@@ -38,10 +38,10 @@ describe MalParser::Entry::Manga do
             name: 'Sports'
           }
         ],
-        score: 7.67,
-        ranked: 14_953,
-        popularity: 23_805,
-        members: 68,
+        score: 7.3,
+        ranked: 17_191,
+        popularity: 26_380,
+        members: 93,
         favorites: 0,
         related: {},
         external_links: nil,
