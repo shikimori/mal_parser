@@ -9,9 +9,9 @@ describe MalParser::Entry::Person do
       is_expected.to eq(
         id: id,
         name: 'Kouichi Yamadera',
-        image: 'https://myanimelist.cdn-dena.com/images/voiceactors/3/44674.jpg',
+        image: 'https://cdn.myanimelist.net/images/voiceactors/3/44674.jpg',
         japanese: '山寺 宏一',
-        website: 'http://across-ent.com/talent/men/koichi_yamadera.html',
+        website: nil,
         birthday: Date.parse('1961-06-17')
       )
     end
@@ -22,7 +22,7 @@ describe MalParser::Entry::Person do
         is_expected.to eq(
           id: id,
           name: 'Aya',
-          image: 'https://myanimelist.cdn-dena.com/images/voiceactors/3/40196.jpg',
+          image: 'https://cdn.myanimelist.net/images/voiceactors/3/40196.jpg',
           japanese: '亜矢',
           website: 'http://www.sonymusic.co.jp/artist/Aya/',
           birthday: nil
@@ -42,7 +42,7 @@ describe MalParser::Entry::Person do
 
     describe 'no year in birthday' do
       let(:id) { 10_929 }
-      it { expect(subject[:birthday]).to eq Date.parse('1901-06-01') }
+      it { expect(subject[:birthday]).to eq Date.parse('1992-06-01') }
     end
   end
 end
