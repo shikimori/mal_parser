@@ -17,7 +17,7 @@ module MalParser
     end
 
     def fullname
-      at_css('h1').text.gsub('  ', ' ')
+      at_css('.h1-title').text.gsub('  ', ' ')
     end
 
     def seyu

@@ -56,7 +56,7 @@ describe MalParser::Entry::Character do
     end
 
     describe 'no image' do
-      let(:id) { 146_860 }
+      let(:id) { 29_001 }
       it { expect(subject[:image]).to eq nil }
     end
 

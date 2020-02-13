@@ -6,7 +6,7 @@ module MalParser
 
     HTTP_GET = lambda do |url|
       begin
-        open(url).read
+        OpenURI.open_uri(url).read
       rescue OpenURI::HTTPError => e
         raise unless e.message =~ /404 Not Found/
       end
