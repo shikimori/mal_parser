@@ -125,7 +125,7 @@ module MalParser
     end
 
     def score
-      value = parse_line('Score').to_f
+      value = parse_line('Score').to_f.round(2)
 
       if value >= 9.9
         0
