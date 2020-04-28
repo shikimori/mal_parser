@@ -22,7 +22,9 @@ module MalParser
       'Not yet aired' => :anons,
       'Not yet published' => :anons,
       'Publishing' => :ongoing,
-      'Finished' => :released
+      'Finished' => :released,
+      'On Hiatus' => :paused,
+      'Discontinued' => :discontinued
     }
 
   private
