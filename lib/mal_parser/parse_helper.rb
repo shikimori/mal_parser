@@ -20,6 +20,12 @@ module MalParser
     }mix
     INVALID_ID_REGEXP = /<div class="badresult">Invalid ID provided/
 
+    SPOILER_BLOCK_REGEXP = %r{
+      <div\ class="spoiler" .*? value="Hide\ spoiler">
+        (.*?)
+      </span></div>
+    }mix
+
     def doc
       @doc ||= Nokogiri::HTML html
     end
@@ -102,6 +108,8 @@ module MalParser
       fixed_text = Nokogiri::HTML::DocumentFragment
         .parse(html)
         .to_html(save_with: ParseHelper::NOKOGIRI_SAVE_OPTIONS)
+        .gsub(/\r|\n/, '')
+        .gsub(SPOILER_BLOCK_REGEXP, '[spoiler_block=Spoiler]\1[/spoiler_block]')
 
       CGI.unescapeHTML(fixed_text) unless fixed_text&.empty?
     end
