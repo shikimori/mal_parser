@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.6
   Exclude:
     - bin/*
     - Guardfile
@@ -9,8 +9,10 @@ AllCops:
     - spec/spec_helper.rb
     - spec/support*
   UseCache: false
+  NewCops: enable
 
-Metrics/LineLength:
+Layout/LineLength:
+  Max: 100
   AllowURI: true
   IgnoreCopDirectives: true
   IgnoredPatterns: ['\A\ *#']
@@ -30,11 +32,18 @@ Style/WordArray:
 Style/NumericLiterals:
   Exclude:
     - spec/**/*
+Security/Open:
+  Exclude:
+    - spec/**/*
+Metrics/AbcSize:
+  Max: 20
+Metrics/MethodLength:
+  Max: 15
 
+Migration/DepartmentName:
+  Enabled: false
 Style/MultilineBlockChain:
   Enabled: false
-# Style/NumericPredicate:
-  # Enabled: false
 Style/GuardClause:
   Enabled: false
 Style/Documentation:
@@ -61,17 +70,39 @@ Style/MutableConstant:
   Enabled: false
 Style/EmptyMethod:
   Enabled: false
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   Enabled: false
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
 Layout/MultilineMethodCallIndentation:
   Enabled: false
 Style/EmptyCaseCondition:
   Enabled: false
 Style/MultilineTernaryOperator:
   Enabled: false
-Lint/EndAlignment:
+Layout/EndAlignment:
   Enabled: false
-Lint/HandleExceptions:
+Lint/SuppressedException:
+  Enabled: false
+Style/RescueModifier:
+  Enabled: false
+Style/BlockComments:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+Lint/UriEscapeUnescape:
+  Enabled: false
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+Style/OptionalBooleanParameter:
+  Enabled: false
+Style/HashAsLastArrayItem:
+  Enabled: false
+Style/StringConcatenation:
   Enabled: false
 
 Style/StringLiterals:
@@ -110,3 +141,6 @@ Style/CollectionMethods:
     find_all: select
     reduce: inject
     detect: find
+
+Style/Lambda:
+  EnforcedStyle: literal
