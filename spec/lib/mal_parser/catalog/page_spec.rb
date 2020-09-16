@@ -21,7 +21,7 @@ describe MalParser::Catalog::Page do
         it do
           is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
           expect(results.first).to eq(
-            id: 20_707,
+            id: 20707,
             name: '"0"',
             type: :anime
           )
@@ -34,8 +34,8 @@ describe MalParser::Catalog::Page do
         it do
           is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
           expect(results.first).to eq(
-            id: 85_868,
-            name: '!',
+            id: 62783,
+            name: '',
             type: :manga
           )
         end
@@ -48,8 +48,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 27_727,
-          name: 'Binan Koukou Chikyuu Bouei-bu LOVE!',
+          id: 30152,
+          name: 'au x Rope',
           type: :anime
         )
       end
@@ -61,8 +61,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 34_943,
-          name: 'Harukaze: You were here',
+          id: 42896,
+          name: 'Mou Ii Kai',
           type: :anime
         )
       end

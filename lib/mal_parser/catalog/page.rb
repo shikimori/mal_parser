@@ -2,7 +2,7 @@ module MalParser
   class Catalog::Page
     include ParseHelper
 
-    method_object [:type!, :page, :sorting]
+    method_object %i[type! page sorting]
 
     ENTRIES_PER_PAGE = 50
     DEFAULT_SORTING = 'name'
