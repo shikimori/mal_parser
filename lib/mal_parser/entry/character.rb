@@ -4,7 +4,7 @@ module MalParser
       japanese fullname seyu synopsis
     ]
     SYNOPSYS_REGEXP = %r{
-      <div \s class="normal_header" [\s\S]*? </div>
+      <h2 \s class="normal_header" [\s\S]*? </h2>
         (?<html> [\s\S]*? )
       (<div \s class="normal_header"|<br><br><div \s style="padding:)
     }mix
