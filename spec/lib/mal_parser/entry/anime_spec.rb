@@ -1,6 +1,6 @@
 describe MalParser::Entry::Anime do
   let(:parser) { MalParser::Entry::Anime.new id }
-  let(:id) { 11_757 }
+  let(:id) { 11757 }
 
   describe '#call', :vcr do
     subject { parser.call }
@@ -9,7 +9,7 @@ describe MalParser::Entry::Anime do
       is_expected.to eq(
         id: id,
         name: 'Sword Art Online',
-        image: 'https://myanimelist.cdn-dena.com/images/anime/11/39717.jpg',
+        image: 'https://cdn.myanimelist.net/images/anime/11/39717.jpg',
         english: 'Sword Art Online',
         synonyms: ['S.A.O', 'SAO'],
         japanese: 'ソードアート・オンライン',
@@ -42,11 +42,11 @@ describe MalParser::Entry::Anime do
         ],
         duration: 23,
         rating: :pg_13,
-        score: 7.77,
-        ranked: 936,
+        score: 7.31,
+        ranked: 2276,
         popularity: 3,
-        members: 1_006_734,
-        favorites: 43_699,
+        members: 1959453,
+        favorites: 62096,
         related: {
           adaptation: [{
             id: 21_479,
@@ -70,7 +70,7 @@ describe MalParser::Entry::Anime do
         },
         external_links: nil,
         synopsis: <<-TEXT.strip
-          In the year 2022, virtual reality has progressed by leaps and bounds, and a massive online role-playing game called Sword Art Online (SAO) is launched. With the aid of "NerveGear" technology, players can control their avatars within the game using nothing but their own thoughts.\r\n\r\nKazuto Kirigaya, nicknamed "Kirito," is among the lucky few enthusiasts who get their hands on the first shipment of the game. He logs in to find himself, with ten-thousand others, in the scenic and elaborate world of Aincrad, one full of fantastic medieval weapons and gruesome monsters. However, in a cruel turn of events, the players soon realize they cannot log out; the game's creator has trapped them in his new world until they complete all one hundred levels of the game.\r\n\r\nIn order to escape Aincrad, Kirito will now have to interact and cooperate with his fellow players. Some are allies, while others are foes, like Asuna Yuuki, who commands the leading group attempting to escape from the ruthless game. To make matters worse, Sword Art Online is not all fun and games: if they die in Aincrad, they die in real life. Kirito must adapt to his new reality, fight for his survival, and hopefully break free from his virtual hell.\r\n\r\n[Written by MAL Rewrite]
+          In the year 2022, virtual reality has progressed by leaps and bounds, and a massive online role-playing game called Sword Art Online (SAO) is launched. With the aid of "NerveGear" technology, players can control their avatars within the game using nothing but their own thoughts.Kazuto Kirigaya, nicknamed "Kirito," is among the lucky few enthusiasts who get their hands on the first shipment of the game. He logs in to find himself, with ten-thousand others, in the scenic and elaborate world of Aincrad, one full of fantastic medieval weapons and gruesome monsters. However, in a cruel turn of events, the players soon realize they cannot log out; the game's creator has trapped them in his new world until they complete all one hundred levels of the game.In order to escape Aincrad, Kirito will now have to interact and cooperate with his fellow players. Some are allies, while others are foes, like Asuna Yuuki, who commands the leading group attempting to escape from the ruthless game. To make matters worse, Sword Art Online is not all fun and games: if they die in Aincrad, they die in real life. Kirito must adapt to his new reality, fight for his survival, and hopefully break free from his virtual hell.[Written by MAL Rewrite]
         TEXT
       )
     end
@@ -81,16 +81,16 @@ describe MalParser::Entry::Anime do
       before { MalParser.configuration.http_get = get_with_cookie }
       after { MalParser.reset }
       let(:get_with_cookie) do
-        lambda do |url|
+        ->(url) do
           open(url, 'Cookie' => cookie).read
         end
       end
       let(:cookie) do
-        %w(
-          MALHLOGSESSID=978fea4e54380b5c421580ee33e7b521;
-          MALSESSIONID=7dl75aolp079jqcaphp0175r37;
+        %w[
+          MALHLOGSESSID=9997d5a535600b43364da581824850b8;
+          MALSESSIONID=3vbue7hmqoqa86f9tplpsb2781;
           is_logged_in=1;
-        ).join(' ')
+        ].join(' ')
       end
 
       it do
@@ -106,7 +106,7 @@ describe MalParser::Entry::Anime do
             url: 'http://www.animenewsnetwork.com/encyclopedia/anime.php?id=18171'
           }, {
             kind: 'wikipedia',
-            url: 'http://ja.wikipedia.org/wiki/%E5%90%9B%E3%81%AE%E5%90%8D%E3%81%AF%E3%80%82'
+            url: 'https://en.wikipedia.org/wiki/Your_Name'
           }
         ]
       end
@@ -138,11 +138,11 @@ describe MalParser::Entry::Anime do
           }],
           alternative_setting: [{
             id: 3_948,
-            name: 'Mahou Sensei Negima! Introduction Film',
+            name: 'Mahou Sensei Negima!: Introduction Film',
             type: :anime
           }, {
             id: 4_188,
-            name: 'Mahou Sensei Negima! Shiroki Tsubasa Ala Alba',
+            name: 'Mahou Sensei Negima!: Shiroki Tsubasa Ala Alba',
             type: :anime
           }],
           other: [{

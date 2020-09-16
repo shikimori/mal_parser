@@ -26,6 +26,8 @@ module MalParser
       </span></div>
     }mix
 
+    ID_REGEXP = %r{/(?<id>\d+)(?:/|$)}
+
     def doc
       @doc ||= Nokogiri::HTML html
     end
@@ -48,7 +50,7 @@ module MalParser
       end
     end
 
-    def parse_line text
+    def parse_line text # rubocop:disable PerceivedComplexity, CyclomaticComplexity
       node = dark_texts.find { |v| v.text.start_with? "#{text}:" }&.next
       return unless node
 
@@ -56,7 +58,7 @@ module MalParser
       text.empty? && node.next&.name != 'div' ? node.next&.text&.strip : text
     end
 
-    def parse_links text
+    def parse_links text # rubocop:disable PerceivedComplexity, CyclomaticComplexity
       node = dark_texts.find { |v| v.text.start_with? "#{text}:" }&.parent
 
       if !node || node.text =~ /None found/
@@ -89,13 +91,12 @@ module MalParser
       else
         Date.parse(date)
       end
-
     rescue StandardError
       nil
     end
 
     def extract_id url
-      url.match(%r{/(?<id>\d+)(/|$)})[:id].to_i
+      url.match(ID_REGEXP)[:id].to_i
     end
 
     def extract_type url

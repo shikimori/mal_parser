@@ -1,6 +1,5 @@
-# rubocop:disable ClassLength
 module MalParser
-  class Entry::Anime < Entry::Base
+  class Entry::Anime < Entry::Base # rubocop:disable ClassLength
     FIELDS = Entry::Base::FIELDS + %i[
       english japanese synonyms kind episodes status aired_on released_on
       broadcast studios origin genres duration rating
@@ -152,10 +151,10 @@ module MalParser
 
     def synopsis
       return if no_synopsis?
+
       fix_synopsis parse_synopsis
     end
 
-    # rubocop:disable AbcSize
     def related
       parse_related.each_with_object({}) do |tr, memo|
         tds = tr.css('td')
@@ -164,12 +163,11 @@ module MalParser
 
         memo[relation] = tds.last
           .css('a')
-          .select { |link| link.text != '' }
+          .reject { |link| link.text == '' }
           .map { |link| parse_link link, with_type: true }
           .compact
       end
     end
-    # rubocop:enable AbcSize
 
     def external_links
       at_css('table td h2:contains("External Links")')
@@ -190,7 +188,7 @@ module MalParser
     end
 
     def parse_synopsis
-      at_css('span[itemprop="description"]')&.text
+      at_css('p[itemprop="description"]')&.text
     end
 
     def parse_related
@@ -198,4 +196,3 @@ module MalParser
     end
   end
 end
-# rubocop:enable ClassLength
