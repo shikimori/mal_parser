@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mal_parser (0.1.2)
+    mal_parser (0.2.0)
       attr_extras
       nokogiri
 
@@ -139,4 +139,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.17.3
+   1.17.2
