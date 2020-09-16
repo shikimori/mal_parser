@@ -1,10 +1,11 @@
 module MalParser
-  module ParseHelper
+  module ParseHelper # rubocop:disable ModuleLength
     NOKOGIRI_SAVE_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_HTML |
       Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
 
     NO_SYNOPSIS_TEXT = [
       'No synopsis has been added for this',
+      'No synopsis information has been added to this',
       'No biography written.',
       'No summary yet.'
     ]

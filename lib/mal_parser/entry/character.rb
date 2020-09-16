@@ -32,7 +32,7 @@ module MalParser
     end
 
     def parse_synopsis
-      at_css('#content > table > tr > td:nth-child(2)').to_html
+      at_css('#content > table > tr > td:nth-child(2)')&.inner_html
     end
 
     def parse_seyu seyu_doc

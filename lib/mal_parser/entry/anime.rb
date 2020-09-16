@@ -188,7 +188,9 @@ module MalParser
     end
 
     def parse_synopsis
-      at_css('p[itemprop="description"]')&.text
+      at_css(
+        'p[itemprop="description"],span[itemprop="description"]'
+      )&.inner_html
     end
 
     def parse_related
