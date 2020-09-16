@@ -14,7 +14,7 @@ describe MalParser::Entry::Characters do
           id: 139_108,
           roles: %w[Main]
         )
-        expect(characters[:staff]).to have(18).items
+        expect(characters[:staff]).to have(19).items
         expect(characters[:staff].first).to eq(
           id: 33_365,
           roles: %w[Director Script]
