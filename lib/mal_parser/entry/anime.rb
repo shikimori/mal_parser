@@ -1,5 +1,5 @@
 module MalParser
-  class Entry::Anime < Entry::Base # rubocop:disable ClassLength
+  class Entry::Anime < Entry::Base # rubocop:disable Metrics/ClassLength
     FIELDS = Entry::Base::FIELDS + %i[
       english japanese synonyms kind episodes status aired_on released_on
       broadcast studios origin genres duration rating

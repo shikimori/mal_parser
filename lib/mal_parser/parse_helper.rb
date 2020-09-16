@@ -1,5 +1,5 @@
 module MalParser
-  module ParseHelper # rubocop:disable ModuleLength
+  module ParseHelper # rubocop:disable Metrics/ModuleLength
     NOKOGIRI_SAVE_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_HTML |
       Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
 
@@ -51,7 +51,7 @@ module MalParser
       end
     end
 
-    def parse_line text # rubocop:disable PerceivedComplexity, CyclomaticComplexity
+    def parse_line text # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
       node = dark_texts.find { |v| v.text.start_with? "#{text}:" }&.next
       return unless node
 
@@ -59,7 +59,7 @@ module MalParser
       text.empty? && node.next&.name != 'div' ? node.next&.text&.strip : text
     end
 
-    def parse_links text # rubocop:disable PerceivedComplexity, CyclomaticComplexity
+    def parse_links text # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
       node = dark_texts.find { |v| v.text.start_with? "#{text}:" }&.parent
 
       if !node || node.text =~ /None found/
