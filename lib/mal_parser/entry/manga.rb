@@ -15,6 +15,7 @@ module MalParser
       'Manhua' => :manhua,
       'Manhwa' => :manhwa,
       'Novel' => :novel,
+      'Light Novel' => :light_novel,
       'One Shot' => :one_shot,
       'One-shot' => :one_shot
     }
