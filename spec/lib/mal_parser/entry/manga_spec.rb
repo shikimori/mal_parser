@@ -55,5 +55,13 @@ describe MalParser::Entry::Manga do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
+
+    describe 'broken ongoing date' do
+      let(:id) { 116_897 }
+      it do
+        expect(subject[:aired_on]).to eq Date.parse('Oct, 2013')
+        expect(subject[:released_on]).to eq nil
+      end
+    end
   end
 end

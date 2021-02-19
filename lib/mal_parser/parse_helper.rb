@@ -87,10 +87,11 @@ module MalParser
       # if date.match /^\w+\s+\d+,$/
         # nil
       # elsif date.match(/^\d+$/)
-      if date =~ /^\d+$/
-        Date.new date.to_i
-      else
-        Date.parse(date)
+      case date
+        when '?' then nil
+        when /^\d+$/ then Date.new date.to_i
+        else
+          Date.parse(date.gsub(/ ,/, '')) # gsub fixes broken dates format on MAL
       end
     rescue StandardError
       nil
