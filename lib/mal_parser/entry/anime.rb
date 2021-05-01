@@ -184,9 +184,7 @@ module MalParser
     def dates
       @dates ||= parse_line(self.class::AIRED_FIELD)
         .split(' to ')
-        .map do |date|
-          parse_date date.gsub(/^, /, '')
-        end
+        .map { |date| parse_date date }
     end
 
     def parse_synopsis
