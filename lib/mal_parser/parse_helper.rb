@@ -91,7 +91,7 @@ module MalParser
         when '?' then nil
         when /^\d+$/ then Date.new date.to_i
         else
-          Date.parse(date.gsub(/ ,/, '')) # gsub fixes broken dates format on MAL
+          Date.parse(date.gsub(/ ,|^, /, '')) # gsub fixes broken dates format on MAL
       end
     rescue StandardError
       nil

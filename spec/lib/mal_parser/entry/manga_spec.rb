@@ -1,9 +1,9 @@
 describe MalParser::Entry::Manga do
   let(:parser) { MalParser::Entry::Manga.new id }
-  let(:id) { 11757 }
 
   describe '#call', :vcr do
     subject { parser.call }
+    let(:id) { 11757 }
 
     it do
       is_expected.to eq(
@@ -49,6 +49,14 @@ describe MalParser::Entry::Manga do
           Jin's a happy, irresponsible high school kid with extraordinary powers. The problem is, they only show up once a month. He's got a great group of friends, including the attractive Fusano, who takes her own fighting skills way more seriously than Jin does. But that all changes when some tough guys challenge him on one of the days when he isn't powered up. Turns out they were hired by his estranged brother Soichiro, who is after something that Jin possesses. And when Soichiro later attacks Fusano, the war between brothers is on.<br><br>(Source: CMX)
         TEXT
       )
+    end
+
+    context 'year without date' do
+      let(:id) { 304 }
+      it do
+        expect(subject[:aired_on]).to eq Date.parse('1978-01-01')
+        expect(subject[:released_on]).to eq Date.parse('1987-01-01')
+      end
     end
 
     describe 'record not found' do
