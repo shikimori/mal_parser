@@ -3,8 +3,13 @@ module MalParser
     include ParseHelper
     method_object :id, :type
 
+    CSS_SELECTORS = [
+      '.anime-character-container > table',
+      'div#content > table tr > td > div > table'
+    ]
+
     def call
-      roles_doc = doc.css('div#content > table tr > td > div > table')
+      roles_doc = doc.css(CSS_SELECTORS.join(','))
 
       {
         characters: extract_roles(roles_doc, 'character'),
@@ -26,7 +31,9 @@ module MalParser
 
       {
         id: extract_id(url),
-        roles: node.css('small').text.split(', ')
+        roles: url_variant == 'character' ?
+          node.css('.spaceit_pad')[1].text.strip.delete_suffix(' ').split(', ') :
+          node.css('small').text.split(', ')
       }
     end
 
