@@ -9,7 +9,7 @@ describe MalParser::Entry::Person do
       is_expected.to eq(
         id: id,
         name: 'Kouichi Yamadera',
-        image: 'https://cdn.myanimelist.net/images/voiceactors/3/44674.jpg',
+        image: 'https://cdn.myanimelist.net/images/voiceactors/3/60992.jpg',
         japanese: '山寺 宏一',
         website: nil,
         birthday: Date.parse('1961-06-17')
