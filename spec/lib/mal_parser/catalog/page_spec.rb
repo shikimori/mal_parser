@@ -34,8 +34,8 @@ describe MalParser::Catalog::Page do
         it do
           is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
           expect(results.first).to eq(
-            id: 62783,
-            name: '',
+            id: 85868,
+            name: '!',
             type: :manga
           )
         end
@@ -48,8 +48,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 30152,
-          name: 'au x Rope',
+          id: 42865,
+          name: 'Ashi',
           type: :anime
         )
       end
@@ -61,8 +61,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 42896,
-          name: 'Mou Ii Kai',
+          id: 49970,
+          name: 'Shuo Guo Lei Lei 2nd Season',
           type: :anime
         )
       end
