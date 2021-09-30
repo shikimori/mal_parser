@@ -71,11 +71,12 @@ module MalParser
 
     def parse_link node, with_type: false
       url = node.attr 'href'
+      name = node.text.strip
 
       if with_type
-        { id: extract_id(url), name: node.text, type: extract_type(url) }
+        { id: extract_id(url), name: name, type: extract_type(url) }
       else
-        { id: extract_id(url), name: node.text }
+        { id: extract_id(url), name: name }
       end
     end
 
