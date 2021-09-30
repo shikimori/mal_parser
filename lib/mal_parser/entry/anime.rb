@@ -104,7 +104,10 @@ module MalParser
     end
 
     def genres
-      parse_links('Demographic') + parse_links('Genres') + parse_links('Themes')
+      parse_links('Demographic') +
+        parse_links('Genres') +
+        parse_links('Themes') +
+        parse_links('Theme')
     end
 
     def duration

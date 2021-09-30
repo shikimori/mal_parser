@@ -34,6 +34,9 @@ describe MalParser::Entry::Anime do
         }, {
           id: 22,
           name: 'Romance'
+        }, {
+          id: 11,
+          name: 'Game'
         }],
         duration: 23,
         rating: :pg_13,
