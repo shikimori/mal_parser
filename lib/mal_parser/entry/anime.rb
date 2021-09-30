@@ -56,7 +56,7 @@ module MalParser
     end
 
     def synonyms
-      parse_line('Synonyms')&.split(', ')&.map(&:strip) || []
+      parse_line('Synonym', can_be_plural: true)&.split(', ')&.map(&:strip) || []
     end
 
     def kind
@@ -105,9 +105,8 @@ module MalParser
 
     def genres
       parse_links('Demographic') +
-        parse_links('Genres') +
-        parse_links('Themes') +
-        parse_links('Theme')
+        parse_links('Genre', can_be_plural: true) +
+        parse_links('Theme', can_be_plural: true)
     end
 
     def duration

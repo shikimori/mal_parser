@@ -51,16 +51,28 @@ module MalParser
       end
     end
 
-    def parse_line text # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-      node = dark_texts.find { |v| v.text.start_with? "#{text}:" }&.next
+    def parse_line text, can_be_plural: false # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+      node = dark_texts
+        .find do |text_node|
+          text_node.text.start_with?("#{text}:") || (
+            can_be_plural && text_node.text.start_with?("#{text}s:")
+          )
+        end
+        &.next
       return unless node
 
       text = node.text.strip
       text.empty? && node.next&.name != 'div' ? node.next&.text&.strip : text
     end
 
-    def parse_links text # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-      node = dark_texts.find { |v| v.text.start_with? "#{text}:" }&.parent
+    def parse_links text, can_be_plural: false # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+      node = dark_texts
+        .find do |text_node|
+          text_node.text.start_with?("#{text}:") || (
+            can_be_plural && text_node.text.start_with?("#{text}s:")
+          )
+        end
+        &.parent
 
       if !node || node.text =~ /None found/
         []
