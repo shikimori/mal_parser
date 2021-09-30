@@ -22,95 +22,107 @@ describe MalParser::Entry::Anime do
         broadcast: 'Sundays at 00:00 (JST)',
         studios: [{ id: 56, name: 'A-1 Pictures' }],
         origin: :light_novel,
-        genres: [
-          {
-            id: 1,
-            name: 'Action'
-          }, {
-            id: 2,
-            name: 'Adventure'
-          }, {
-            id: 10,
-            name: 'Fantasy'
-          }, {
-            id: 11,
-            name: 'Game'
-          }, {
-            id: 22,
-            name: 'Romance'
-          }
-        ],
+        genres: [{
+          id: 1,
+          name: 'Action'
+        }, {
+          id: 2,
+          name: 'Adventure'
+        }, {
+          id: 10,
+          name: 'Fantasy'
+        }, {
+          id: 22,
+          name: 'Romance'
+        }],
         duration: 23,
         rating: :pg_13,
-        score: 7.31,
-        ranked: 2276,
-        popularity: 3,
-        members: 1959453,
-        favorites: 62096,
+        score: 7.21,
+        ranked: 2798,
+        popularity: 4,
+        members: 2551027,
+        favorites: 60656,
         related: {
           adaptation: [{
-            id: 21_479,
+            id: 21479,
             name: 'Sword Art Online',
             type: :manga
           }, {
-            id: 43_921,
+            id: 43921,
             name: 'Sword Art Online: Progressive',
             type: :manga
           }],
+          alternative_version: [{
+            id: 42916,
+            name: 'Sword Art Online: Progressive Movie - Hoshi Naki Yoru no Aria',
+            type: :anime
+          }],
           other: [{
-            id: 16_099,
+            id: 16099,
             name: 'Sword Art Online: Sword Art Offline',
             type: :anime
           }],
           sequel: [{
-            id: 20_021,
+            id: 20021,
             name: 'Sword Art Online: Extra Edition',
             type: :anime
           }]
         },
-        external_links: nil,
+        external_links: [{
+          kind: 'official_site',
+          url: 'http://www.swordart-online.net/'
+        }, {
+          kind: 'anime_db',
+          url: 'http://anidb.info/perl-bin/animedb.pl?show=anime&aid=8692'
+        }, {
+          kind: 'anime_news_network',
+          url: 'http://www.animenewsnetwork.com/encyclopedia/anime.php?id=13858'
+        }, {
+          kind: 'wikipedia',
+          url: 'http://en.wikipedia.org/wiki/Sword_Art_Online'
+        }],
         synopsis: <<-TEXT.strip
           In the year 2022, virtual reality has progressed by leaps and bounds, and a massive online role-playing game called Sword Art Online (SAO) is launched. With the aid of "NerveGear" technology, players can control their avatars within the game using nothing but their own thoughts.<br><br>Kazuto Kirigaya, nicknamed "Kirito," is among the lucky few enthusiasts who get their hands on the first shipment of the game. He logs in to find himself, with ten-thousand others, in the scenic and elaborate world of Aincrad, one full of fantastic medieval weapons and gruesome monsters. However, in a cruel turn of events, the players soon realize they cannot log out; the game's creator has trapped them in his new world until they complete all one hundred levels of the game.<br><br>In order to escape Aincrad, Kirito will now have to interact and cooperate with his fellow players. Some are allies, while others are foes, like Asuna Yuuki, who commands the leading group attempting to escape from the ruthless game. To make matters worse, Sword Art Online is not all fun and games: if they die in Aincrad, they die in real life. Kirito must adapt to his new reality, fight for his survival, and hopefully break free from his virtual hell.<br><br>[Written by MAL Rewrite]
         TEXT
       )
     end
 
-    describe 'external_links' do
-      let(:id) { 32_281 }
-
-      before { MalParser.configuration.http_get = get_with_cookie }
-      after { MalParser.reset }
-      let(:get_with_cookie) do
-        ->(url) do
-          open(url, 'Cookie' => cookie).read
-        end
-      end
-      let(:cookie) do
-        %w[
-          MALHLOGSESSID=9997d5a535600b43364da581824850b8;
-          MALSESSIONID=3vbue7hmqoqa86f9tplpsb2781;
-          is_logged_in=1;
-        ].join(' ')
-      end
-
-      it do
-        expect(subject[:external_links]).to eq [
-          {
-            kind: 'official_site',
-            url: 'http://www.kiminona.com/'
-          }, {
-            kind: 'anime_db',
-            url: 'http://anidb.info/perl-bin/animedb.pl?show=anime&aid=11829'
-          }, {
-            kind: 'anime_news_network',
-            url: 'http://www.animenewsnetwork.com/encyclopedia/anime.php?id=18171'
-          }, {
-            kind: 'wikipedia',
-            url: 'https://en.wikipedia.org/wiki/Your_Name'
-          }
-        ]
-      end
-    end
+    # describe 'external_links' do
+    #   let(:id) { 32_281 }
+    #
+    #   before { MalParser.configuration.http_get = get_with_cookie }
+    #   after { MalParser.reset }
+    #   let(:get_with_cookie) do
+    #     ->(url) do
+    #       open(url, 'Cookie' => cookie).read
+    #     end
+    #   end
+    #   let(:cookie) do
+    #     %w[
+    #       MALHLOGSESSID=9997d5a535600b43364da581824850b8;
+    #       MALSESSIONID=3vbue7hmqoqa86f9tplpsb2781;
+    #       is_logged_in=1;
+    #     ].join(' ')
+    #   end
+    #
+    #   it do
+    #     expect(subject[:external_links]).to eq [
+    #       {
+    #         kind: 'official_site',
+    #         url: 'http://www.kiminona.com/'
+    #       }, {
+    #         kind: 'anime_db',
+    #         url: 'http://anidb.info/perl-bin/animedb.pl?show=anime&aid=11829'
+    #       }, {
+    #         kind: 'anime_news_network',
+    #         url: 'http://www.animenewsnetwork.com/encyclopedia/anime.php?id=18171'
+    #       }, {
+    #         kind: 'wikipedia',
+    #         url: 'https://en.wikipedia.org/wiki/Your_Name'
+    #       }
+    #     ]
+    #   end
+    # end
 
     describe 'none studios found' do
       let(:id) { 34_746 }
@@ -162,18 +174,16 @@ describe MalParser::Entry::Anime do
     describe 'duplicate genres' do
       let(:id) { 28_367 }
       it do
-        expect(subject[:genres]).to eq [
-          {
-            id: 24,
-            name: 'Sci-Fi'
-          }, {
-            id: 4,
-            name: 'Comedy'
-          }, {
-            id: 27,
-            name: 'Shounen'
-          }
-        ]
+        expect(subject[:genres]).to eq [{
+          id: 27,
+          name: 'Shounen'
+        }, {
+          id: 4,
+          name: 'Comedy'
+        }, {
+          id: 24,
+          name: 'Sci-Fi'
+        }]
       end
     end
   end
