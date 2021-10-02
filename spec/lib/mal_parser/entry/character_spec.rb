@@ -59,17 +59,17 @@ describe MalParser::Entry::Character do
       )
     end
 
-    describe 'no image' do
+    context 'no image' do
       let(:id) { 29_001 }
       it { expect(subject[:image]).to eq nil }
     end
 
-    describe 'record not found' do
+    context 'record not found' do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
 
-    describe 'no japanese, no seyu' do
+    context 'no japanese, no seyu' do
       let(:id) { 28_754 }
       it do
         is_expected.to eq(

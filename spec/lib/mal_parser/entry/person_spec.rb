@@ -16,7 +16,7 @@ describe MalParser::Entry::Person do
       )
     end
 
-    describe 'birthday unknown' do
+    context 'birthday unknown' do
       let(:id) { 38_062 }
       it do
         is_expected.to eq(
@@ -30,17 +30,17 @@ describe MalParser::Entry::Person do
       end
     end
 
-    describe 'record not found' do
+    context 'record not found' do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
 
-    describe 'website' do
+    context 'website' do
       let(:id) { 869 }
       it { expect(subject[:website]).to eq 'http://whv-amusic.com/hayamisaori/' }
     end
 
-    describe 'no year in birthday' do
+    context 'no year in birthday' do
       let(:id) { 10_929 }
       it { expect(subject[:birthday]).to eq Date.parse('1992-06-01') }
     end

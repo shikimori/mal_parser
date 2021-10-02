@@ -127,17 +127,17 @@ describe MalParser::Entry::Anime do
     #   end
     # end
 
-    describe 'none studios found' do
+    context 'none studios found' do
       let(:id) { 34_746 }
       it { expect(subject[:studios]).to eq [] }
     end
 
-    describe 'record not found' do
+    context 'record not found' do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
 
-    describe 'missing related' do
+    context 'missing related' do
       let(:id) { 157 }
       it do
         expect(subject[:related]).to eq(
@@ -174,7 +174,7 @@ describe MalParser::Entry::Anime do
       end
     end
 
-    describe 'duplicate genres' do
+    context 'duplicate genres' do
       let(:id) { 28_367 }
       it do
         expect(subject[:genres]).to eq [{

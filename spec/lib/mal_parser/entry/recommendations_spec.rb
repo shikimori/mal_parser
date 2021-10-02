@@ -36,7 +36,7 @@ describe MalParser::Entry::Recommendations do
       ]
     end
 
-    describe 'record not found' do
+    context 'record not found' do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end

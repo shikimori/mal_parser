@@ -41,12 +41,12 @@ describe MalParser::Entry::Characters do
       end
     end
 
-    describe 'record not found' do
+    context 'record not found' do
       let(:id) { 999_999_999 }
       it { expect { subject }.to raise_error MalParser::RecordNotFound }
     end
 
-    describe 'no roles' do
+    context 'no roles' do
       let(:id) { 34_312 }
       it do
         is_expected.to eq(
