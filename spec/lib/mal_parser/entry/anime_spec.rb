@@ -189,5 +189,14 @@ describe MalParser::Entry::Anime do
         }]
       end
     end
+
+    context 'synopsis' do
+      let(:id) { 39_893 }
+      it do
+        expect(subject[:synopsis]).to eq(
+          'Set in a city modeled after San Francisco in the 1980s, the protagonist has transformed into the hero Muteking and is fighting against evil aliens for some reason. Such a cheerful hero will return in 2020! Sci-fi hero love comedy <i>Muteking the Dancing Hero</i>, singing and dancing with pop music.<br><br>(Source: Official Website)'
+        )
+      end
+    end
   end
 end
