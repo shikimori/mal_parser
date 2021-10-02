@@ -52,25 +52,25 @@ describe MalParser::Entry::Manga do
       )
     end
 
-    # context 'year without date' do
-    #   let(:id) { 304 }
-    #   it do
-    #     expect(subject[:aired_on]).to eq Date.parse('1978-01-01')
-    #     expect(subject[:released_on]).to eq Date.parse('1987-01-01')
-    #   end
-    # end
-    #
-    # describe 'record not found' do
-    #   let(:id) { 999_999_999 }
-    #   it { expect { subject }.to raise_error MalParser::RecordNotFound }
-    # end
-    #
-    # describe 'broken ongoing date' do
-    #   let(:id) { 116_897 }
-    #   it do
-    #     expect(subject[:aired_on]).to eq Date.parse('Oct, 2013')
-    #     expect(subject[:released_on]).to eq nil
-    #   end
-    # end
+    context 'year without date' do
+      let(:id) { 304 }
+      it do
+        expect(subject[:aired_on]).to eq Date.parse('1978-01-01')
+        expect(subject[:released_on]).to eq Date.parse('1987-01-01')
+      end
+    end
+
+    describe 'record not found' do
+      let(:id) { 999_999_999 }
+      it { expect { subject }.to raise_error MalParser::RecordNotFound }
+    end
+
+    describe 'broken ongoing date' do
+      let(:id) { 116_897 }
+      it do
+        expect(subject[:aired_on]).to eq Date.parse('Oct, 2013')
+        expect(subject[:released_on]).to eq nil
+      end
+    end
   end
 end
