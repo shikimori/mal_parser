@@ -5,6 +5,7 @@ module MalParser
 
     CSS_SELECTORS = [
       '.anime-character-container > table',
+      '.manga-character-container > table',
       'div#content > table tr > td > div > table'
     ]
 
@@ -21,7 +22,9 @@ module MalParser
 
     def extract_roles doc, url_variant
       doc
-        .map { |role_doc| parse_role role_doc.css('td')[1], url_variant }
+        .map do |role_doc|
+          parse_role role_doc.css('td')[1], url_variant
+        end
         .compact
     end
 
