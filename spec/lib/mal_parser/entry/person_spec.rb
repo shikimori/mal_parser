@@ -12,7 +12,7 @@ describe MalParser::Entry::Person do
         image: 'https://cdn.myanimelist.net/images/voiceactors/3/60992.jpg',
         japanese: '山寺 宏一',
         website: nil,
-        birthday: Date.parse('1961-06-17')
+        birth_on: Date.parse('1961-06-17')
       )
     end
 
@@ -25,7 +25,7 @@ describe MalParser::Entry::Person do
           image: 'https://cdn.myanimelist.net/images/voiceactors/3/40196.jpg',
           japanese: '亜矢',
           website: 'http://www.sonymusic.co.jp/artist/Aya/',
-          birthday: nil
+          birth_on: nil
         )
       end
     end
@@ -42,7 +42,7 @@ describe MalParser::Entry::Person do
 
     context 'no year in birthday' do
       let(:id) { 10_929 }
-      it { expect(subject[:birthday]).to eq Date.parse('1992-06-01') }
+      it { expect(subject[:birth_on]).to eq Date.parse('1992-06-01') }
     end
   end
 end

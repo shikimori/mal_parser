@@ -1,7 +1,7 @@
 module MalParser
   class Entry::Person < Entry::Base
     FIELDS = Entry::Base::FIELDS + %i[
-      japanese website birthday
+      japanese website birth_on
     ]
 
   private
@@ -21,13 +21,13 @@ module MalParser
       link unless [nil, '', 'http://', 'https://'].include?(link)
     end
 
-    def birthday
-      birthday = parse_date(parse_line('Birthday'))
+    def birth_on
+      value = parse_date(parse_line('Birthday'))
 
-      if birthday&.year == Date.today.year
-        Date.parse "1901-#{birthday.month}-#{birthday.day}"
+      if value&.year == Date.today.year
+        Date.parse "1901-#{value.month}-#{value.day}"
       else
-        birthday
+        value
       end
     end
 
