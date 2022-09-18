@@ -21,8 +21,8 @@ describe MalParser::Catalog::Page do
         it do
           is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
           expect(results.first).to eq(
-            id: 20707,
-            name: '"0"',
+            id: 51478,
+            name: '!NVADE SHOW!',
             type: :anime
           )
         end
@@ -48,8 +48,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 42865,
-          name: 'Ashi',
+          id: 1961,
+          name: 'Arashi no Yoru ni',
           type: :anime
         )
       end
@@ -61,8 +61,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 49970,
-          name: 'Shuo Guo Lei Lei 2nd Season',
+          id: 53071,
+          name: 'Hidden Region',
           type: :anime
         )
       end

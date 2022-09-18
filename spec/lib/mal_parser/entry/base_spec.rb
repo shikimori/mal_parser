@@ -26,7 +26,7 @@ describe MalParser::Entry::Base do
         is_expected.to eq(
           id: id,
           name: 'Monster',
-          image: 'https://cdn.myanimelist.net/images/manga/3/54525.jpg'
+          image: 'https://cdn.myanimelist.net/images/manga/3/258224.jpg'
         )
       end
     end

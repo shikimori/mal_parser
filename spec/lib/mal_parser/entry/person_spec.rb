@@ -37,7 +37,7 @@ describe MalParser::Entry::Person do
 
     context 'website' do
       let(:id) { 869 }
-      it { expect(subject[:website]).to eq 'http://whv-amusic.com/hayamisaori/' }
+      it { expect(subject[:website]).to eq 'https://hayamisaoriofficial.com/' }
     end
 
     context 'no year in birthday' do
