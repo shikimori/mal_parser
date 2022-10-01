@@ -17,8 +17,8 @@ describe MalParser::Entry::Manga do
         chapters: 15,
         volumes: 3,
         status: :released,
-        aired_on: Date.parse('2006-01-01'),
-        released_on: Date.parse('2007-01-01'),
+        aired_on: { year: 2006 },
+        released_on: { year: 2007 },
         publishers: [{ id: 276, name: 'FlexComix Blood' }],
         genres: [{ id: 27, name: 'Shounen' }, { id: 1, name: 'Action' }, { id: 17, name: 'Martial Arts' }, { id: 23, name: 'School' }],
         score: 0.0,
@@ -40,8 +40,8 @@ describe MalParser::Entry::Manga do
     context 'year without date' do
       let(:id) { 304 }
       it do
-        expect(subject[:aired_on]).to eq Date.parse('1978-01-01')
-        expect(subject[:released_on]).to eq Date.parse('1987-01-01')
+        expect(subject[:aired_on]).to eq(year: 1978)
+        expect(subject[:released_on]).to eq(year: 1987)
       end
     end
 
@@ -53,7 +53,7 @@ describe MalParser::Entry::Manga do
     context 'broken ongoing date' do
       let(:id) { 116_897 }
       it do
-        expect(subject[:aired_on]).to eq Date.parse('Oct, 2013')
+        expect(subject[:aired_on]).to eq(year: 2013, month: 10)
         expect(subject[:released_on]).to eq nil
       end
     end

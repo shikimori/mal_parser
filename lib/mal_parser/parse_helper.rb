@@ -96,14 +96,22 @@ module MalParser
       @dark_texts ||= css('span.dark_text')
     end
 
-    def parse_date date
-      date = date.gsub(/^, /, '') if date.match?(/^, /)
+    def parse_date date # rubocop:disable Metrics/MethodLength
+      fixed_date = date.gsub(/^, /, '').gsub(/ ,/, '')
 
       case date
         when '?' then nil
-        when /^\d+$/ then Date.new date.to_i
+        when /^\d+$/ then { year: fixed_date.to_i }
         else
-          Date.parse(date.gsub(/ ,/, '')) # gsub fixes broken dates format on MAL
+          parsed_date = Date.parse fixed_date
+          case fixed_date
+            when /^\w+ +\d{4}$/
+              { year: parsed_date.year, month: parsed_date.month }
+            when /^\w+ +\d{1,2}$/
+              { month: parsed_date.month, day: parsed_date.day }
+            else
+              { year: parsed_date.year, month: parsed_date.month, day: parsed_date.day }
+          end
       end
     rescue StandardError
       nil

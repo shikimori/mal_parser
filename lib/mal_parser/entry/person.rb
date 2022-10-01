@@ -22,13 +22,7 @@ module MalParser
     end
 
     def birth_on
-      value = parse_date(parse_line('Birthday'))
-
-      if value&.year == Date.today.year
-        Date.parse "1901-#{value.month}-#{value.day}"
-      else
-        value
-      end
+      parse_date parse_line('Birthday')
     end
 
     def type
