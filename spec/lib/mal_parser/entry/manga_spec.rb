@@ -9,7 +9,7 @@ describe MalParser::Entry::Manga do
       is_expected.to eq(
         id: id,
         name: 'Genryuu Butouden: Origin',
-        image: 'https://cdn.myanimelist.net/images/manga/2/101429.jpg',
+        image: 'https://cdn.myanimelist.net/images/manga/2/101429l.jpg',
         english: 'The Battle of Genryu: Origin',
         synonyms: ['Genryuu Butouten - Origin'],
         japanese: '源流武闘伝 -ORIGIN-',

@@ -9,7 +9,7 @@ describe MalParser::Entry::Anime do
       is_expected.to eq(
         id: id,
         name: 'Sword Art Online',
-        image: 'https://cdn.myanimelist.net/images/anime/11/39717.jpg',
+        image: 'https://cdn.myanimelist.net/images/anime/11/39717l.jpg',
         english: 'Sword Art Online',
         synonyms: ['S.A.O', 'SAO'],
         japanese: 'ソードアート・オンライン',

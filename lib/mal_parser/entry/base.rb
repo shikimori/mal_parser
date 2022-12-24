@@ -19,7 +19,9 @@ module MalParser
 
     def image
       url = css('meta[property="og:image"]').first&.attr(:content)
-      url if url && url !~ /apple-touch-icon/
+      return if !url || url.match?(/apple-touch-icon/)
+
+      url
     end
 
     def url

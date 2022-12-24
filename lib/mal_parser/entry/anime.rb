@@ -95,6 +95,14 @@ module MalParser
       value if value && !value.empty? && value != 'Unknown'
     end
 
+    def image
+      parsed_image = super
+      return unless parsed_image
+
+      split = parsed_image.split('.')
+      split[0..-2].join('.') + 'l.' + split[-1]
+    end
+
     def studios
       parse_links('Studios')
     end
