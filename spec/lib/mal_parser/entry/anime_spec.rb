@@ -138,5 +138,21 @@ describe MalParser::Entry::Anime do
         )
       end
     end
+
+    context 'external_links' do
+      let(:id) { 32_281 }
+      it do
+        expect(subject[:external_links]).to eq(
+          [
+            { kind: 'official_site', url: 'http://www.kiminona.com/' },
+            { kind: 'twitter', url: 'https://twitter.com/kiminona_movie' },
+            { kind: 'anime_db', url: 'https://anidb.net/perl-bin/animedb.pl?show=anime&aid=11829' },
+            { kind: 'anime_news_network', url: 'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=18171' },
+            { kind: 'wikipedia', url: 'https://en.wikipedia.org/wiki/Your_Name' },
+            { kind: 'wikipedia', url: 'https://ja.wikipedia.org/wiki/%E5%90%9B%E3%81%AE%E5%90%8D%E3%81%AF%E3%80%82' }
+          ]
+        )
+      end
+    end
   end
 end

@@ -188,14 +188,11 @@ module MalParser
         .css('.external_links')
         .flat_map do |node|
           node.css('a')&.map do |v|
-            next if v.attr(:href) == '#'
+            url = v.attr(:href)
+            kind = extract_external_link_kind(v.text, url)
+            next if url == '#' || !kind
 
-            text = v.text.delete(' ').gsub(/(?<!^)([A-Z]+)/, '_\1').downcase
-
-            {
-              kind: EXTERNAL_LINKS_KIND[text] || text,
-              url: v.attr(:href)
-            }
+            { kind: kind, url: url }
           end
         end
         .compact
@@ -215,6 +212,15 @@ module MalParser
 
     def parse_related
       css('table.anime_detail_related_anime tr')
+    end
+
+    def extract_external_link_kind text, url
+      fixed_text = text.delete(' ').gsub(/(?<!^)([A-Z]+)/, '_\1').downcase
+
+      return 'twitter' if url.include? 'twitter.com'
+      return if fixed_text == 'syoboi'
+
+      EXTERNAL_LINKS_KIND[fixed_text] || fixed_text
     end
   end
 end
