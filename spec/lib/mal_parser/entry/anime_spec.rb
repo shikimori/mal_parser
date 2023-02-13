@@ -26,91 +26,43 @@ describe MalParser::Entry::Anime do
         duration: 23,
         rating: :pg_13,
         score: 7.2,
-        ranked: 2987,
+        ranked: 3088,
         popularity: 5,
-        members: 2812680,
-        favorites: 64975,
+        members: 2893446,
+        favorites: 66134,
         related: {
-          adaptation: [{
-            id: 21479,
-            name: 'Sword Art Online',
-            type: :manga
-          }, {
-            id: 43921,
-            name: 'Sword Art Online: Progressive',
-            type: :manga
-          }],
-          alternative_version: [{
-            id: 42916,
-            name: 'Sword Art Online: Progressive Movie - Hoshi Naki Yoru no Aria',
-            type: :anime
-          }],
-          other: [{
-            id: 16099,
-            name: 'Sword Art Online: Sword Art Offline',
-            type: :anime
-          }],
-          sequel: [{
-            id: 20021,
-            name: 'Sword Art Online: Extra Edition',
-            type: :anime
-          }]
+          adaptation: [{ id: 21479, name: 'Sword Art Online', type: :manga }],
+          alternative_version: [
+            { id: 42916, name: 'Sword Art Online: Progressive Movie - Hoshi Naki Yoru no Aria', type: :anime }
+          ],
+          other: [
+            { id: 16099, name: 'Sword Art Online: Sword Art Offline', type: :anime },
+            { id: 53529, name: 'Sword Art Online (Original Movie)', type: :anime },
+            { id: 53588, name: 'Sword Art Online: Full Dive - Opening Eizou', type: :anime }
+          ],
+          sequel: [
+            { id: 20021, name: 'Sword Art Online: Extra Edition', type: :anime },
+            { id: 21881, name: 'Sword Art Online II', type: :anime }
+          ]
         },
         external_links: [{
           kind: 'official_site',
           url: 'http://www.swordart-online.net/'
         }, {
           kind: 'anime_db',
-          url: 'http://anidb.info/perl-bin/animedb.pl?show=anime&aid=8692'
+          url: 'https://anidb.net/perl-bin/animedb.pl?show=anime&aid=8692'
         }, {
           kind: 'anime_news_network',
-          url: 'http://www.animenewsnetwork.com/encyclopedia/anime.php?id=13858'
+          url: 'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=13858'
         }, {
           kind: 'wikipedia',
           url: 'http://en.wikipedia.org/wiki/Sword_Art_Online'
         }],
         synopsis: <<-TEXT.strip
-          Ever since the release of the innovative NerveGear, gamers from all around the globe have been given the opportunity to experience a completely immersive virtual reality. Sword Art Online (SAO), one of the most recent games on the console, offers a gateway into the wondrous world of Aincrad, a vivid, medieval landscape where users can do anything within the limits of imagination. With the release of this worldwide sensation, gaming has never felt more lifelike.<br><br>However, the idyllic fantasy rapidly becomes a brutal nightmare when SAO's creator traps thousands of players inside the game. The \"log-out\" function has been removed, with the only method of escape involving beating all of Aincrad's one hundred increasingly difficult levels. Adding to the struggle, any in-game death becomes permanent, ending the player's life in the real world.<br><br>While Kazuto \"Kirito\" Kirigaya was fortunate enough to be a beta-tester for the game, he quickly finds that despite his advantages, he cannot overcome SAO's challenges alone. Teaming up with Asuna Yuuki and other talented players, Kirito makes an effort to face the seemingly insurmountable trials head-on. But with difficult bosses and threatening dark cults impeding his progress, Kirito finds that such tasks are much easier said than done.<br><br>[Written by MAL Rewrite]<br>
+          Ever since the release of the innovative NerveGear, gamers from all around the globe have been given the opportunity to experience a completely immersive virtual reality. Sword Art Online (SAO), one of the most recent games on the console, offers a gateway into the wondrous world of Aincrad, a vivid, medieval landscape where users can do anything within the limits of imagination. With the release of this worldwide sensation, gaming has never felt more lifelike.<br><br>However, the idyllic fantasy rapidly becomes a brutal nightmare when SAO's creator traps thousands of players inside the game. The "log-out" function has been removed, with the only method of escape involving beating all of Aincrad's one hundred increasingly difficult levels. Adding to the struggle, any in-game death becomes permanent, ending the player's life in the real world.<br><br>While Kazuto "Kirito" Kirigaya was fortunate enough to be a beta-tester for the game, he quickly finds that despite his advantages, he cannot overcome SAO's challenges alone. Teaming up with Asuna Yuuki and other talented players, Kirito makes an effort to face the seemingly insurmountable trials head-on. But with difficult bosses and threatening dark cults impeding his progress, Kirito finds that such tasks are much easier said than done.<br><br>[Written by MAL Rewrite]
         TEXT
       )
     end
-
-    # describe 'external_links' do
-    #   let(:id) { 32_281 }
-    #
-    #   before { MalParser.configuration.http_get = get_with_cookie }
-    #   after { MalParser.reset }
-    #   let(:get_with_cookie) do
-    #     ->(url) do
-    #       open(url, 'Cookie' => cookie).read
-    #     end
-    #   end
-    #   let(:cookie) do
-    #     %w[
-    #       MALHLOGSESSID=9997d5a535600b43364da581824850b8;
-    #       MALSESSIONID=3vbue7hmqoqa86f9tplpsb2781;
-    #       is_logged_in=1;
-    #     ].join(' ')
-    #   end
-    #
-    #   it do
-    #     expect(subject[:external_links]).to eq [
-    #       {
-    #         kind: 'official_site',
-    #         url: 'http://www.kiminona.com/'
-    #       }, {
-    #         kind: 'anime_db',
-    #         url: 'http://anidb.info/perl-bin/animedb.pl?show=anime&aid=11829'
-    #       }, {
-    #         kind: 'anime_news_network',
-    #         url: 'http://www.animenewsnetwork.com/encyclopedia/anime.php?id=18171'
-    #       }, {
-    #         kind: 'wikipedia',
-    #         url: 'https://en.wikipedia.org/wiki/Your_Name'
-    #       }
-    #     ]
-    #   end
-    # end
 
     context 'none studios found' do
       let(:id) { 34_746 }
@@ -152,7 +104,7 @@ describe MalParser::Entry::Anime do
           }],
           sequel: [{
             id: 33_478,
-            name: 'UQ Holder!: Mahou Sensei Negima! 2',
+            name: 'UQ Holder! Mahou Sensei Negima! 2',
             type: :anime
           }]
         )

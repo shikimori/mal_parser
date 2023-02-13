@@ -22,9 +22,9 @@ describe MalParser::Entry::Manga do
         publishers: [{ id: 276, name: 'FlexComix Blood' }],
         genres: [{ id: 27, name: 'Shounen' }, { id: 1, name: 'Action' }, { id: 17, name: 'Martial Arts' }, { id: 23, name: 'School' }],
         score: 0.0,
-        ranked: 17883,
-        popularity: 34403,
-        members: 125,
+        ranked: 18676,
+        popularity: 35778,
+        members: 128,
         favorites: 0,
         related: {},
         external_links: [{

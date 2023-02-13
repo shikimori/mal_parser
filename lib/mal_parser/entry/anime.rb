@@ -44,6 +44,10 @@ module MalParser
       'Spin-off' => :spin_off,
       'Summary' => :summary
     }
+    EXTERNAL_LINKS_KIND = {
+      'a_nn' => 'anime_news_network',
+      'ani_db' => 'anime_db'
+    }
 
   private
 
@@ -123,7 +127,7 @@ module MalParser
       hours = $LAST_MATCH_INFO[:hours] if value =~ /(?<hours>\d+) hr./
       minutes = $LAST_MATCH_INFO[:minutes] if value =~ /(?<minutes>\d+) min./
 
-      hours.to_i * 60 + minutes.to_i
+      (hours.to_i * 60) + minutes.to_i
     end
 
     def rating
@@ -180,15 +184,21 @@ module MalParser
     end
 
     def external_links
-      at_css('table td h2:contains("External Links")')
-        &.next_element
-        &.css('a')
-        &.map do |v|
-          {
-            kind: v.text.delete(' ').gsub(/(?<!^)([A-Z]+)/, '_\1').downcase,
-            url: v.attr(:href)
-          }
+      doc
+        .css('.external_links')
+        .flat_map do |node|
+          node.css('a')&.map do |v|
+            next if v.attr(:href) == '#'
+
+            text = v.text.delete(' ').gsub(/(?<!^)([A-Z]+)/, '_\1').downcase
+
+            {
+              kind: EXTERNAL_LINKS_KIND[text] || text,
+              url: v.attr(:href)
+            }
+          end
         end
+        .compact
     end
 
     def dates
