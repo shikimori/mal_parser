@@ -46,7 +46,8 @@ module MalParser
     }
     EXTERNAL_LINKS_KIND = {
       'a_nn' => 'anime_news_network',
-      'ani_db' => 'anime_db'
+      'ani_db' => 'anime_db',
+      'namu.wiki' => 'wikipedia'
     }
 
   private

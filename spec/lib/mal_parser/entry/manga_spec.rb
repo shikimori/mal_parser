@@ -57,5 +57,18 @@ describe MalParser::Entry::Manga do
         expect(subject[:released_on]).to eq nil
       end
     end
+
+    context 'namu wiki' do
+      let(:id) { 138443 }
+      it do
+        expect(subject[:external_links]).to eq [{
+          kind: 'official_site',
+          url: 'https://comic.naver.com/webtoon/list.nhn?titleId=725586'
+        }, {
+          kind: 'wikipedia',
+          url: 'https://namu.wiki/w/1%EC%B4%88(%EC%9B%B9%ED%88%B0)'
+        }]
+      end
+    end
   end
 end
