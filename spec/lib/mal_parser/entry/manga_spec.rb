@@ -20,7 +20,12 @@ describe MalParser::Entry::Manga do
         aired_on: { year: 2006 },
         released_on: { year: 2007 },
         publishers: [{ id: 276, name: 'FlexComix Blood' }],
-        genres: [{ id: 27, name: 'Shounen' }, { id: 1, name: 'Action' }, { id: 17, name: 'Martial Arts' }, { id: 23, name: 'School' }],
+        genres: [
+          { id: 27, name: 'Shounen', kind: :demographic },
+          { id: 1, name: 'Action', kind: :genre },
+          { id: 17, name: 'Martial Arts', kind: :theme },
+          { id: 23, name: 'School', kind: :theme }
+        ],
         score: 0.0,
         ranked: 18676,
         popularity: 35778,

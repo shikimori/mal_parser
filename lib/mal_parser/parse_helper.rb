@@ -65,7 +65,7 @@ module MalParser
       text.empty? && node.next&.name != 'div' ? node.next&.text&.strip : text
     end
 
-    def parse_links text, can_be_plural: false # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+    def parse_links text, can_be_plural: false, additionals: {} # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
       node = dark_texts
         .find do |text_node|
           text_node.text.start_with?("#{text}:") || (
@@ -77,18 +77,21 @@ module MalParser
       if !node || node.text =~ /None found/
         []
       else
-        node&.css('a')&.map { |v| parse_link v }&.uniq
+        node
+          &.css('a')
+          &.map { |v| parse_link v, additionals: additionals }
+          &.uniq
       end
     end
 
-    def parse_link node, with_type: false
+    def parse_link node, with_type: false, additionals: {}
       url = node.attr 'href'
       name = node.text.strip
 
       if with_type
-        { id: extract_id(url), name: name, type: extract_type(url) }
+        { id: extract_id(url), name: name, type: extract_type(url), **additionals }
       else
-        { id: extract_id(url), name: name }
+        { id: extract_id(url), name: name, **additionals }
       end
     end
 

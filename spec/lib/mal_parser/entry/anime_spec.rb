@@ -22,7 +22,14 @@ describe MalParser::Entry::Anime do
         broadcast: 'Sundays at 00:00 (JST)',
         studios: [{ id: 56, name: 'A-1 Pictures' }],
         origin: :light_novel,
-        genres: [{ id: 1, name: 'Action' }, { id: 2, name: 'Adventure' }, { id: 10, name: 'Fantasy' }, { id: 22, name: 'Romance' }, { id: 64, name: 'Love Polygon' }, { id: 79, name: 'Video Game' }],
+        genres: [
+          { id: 1, name: 'Action', kind: :genre },
+          { id: 2, name: 'Adventure', kind: :genre },
+          { id: 10, name: 'Fantasy', kind: :genre },
+          { id: 22, name: 'Romance', kind: :genre },
+          { id: 64, name: 'Love Polygon', kind: :theme },
+          { id: 79, name: 'Video Game', kind: :theme }
+        ],
         duration: 23,
         rating: :pg_13,
         score: 7.2,
@@ -114,19 +121,12 @@ describe MalParser::Entry::Anime do
     context 'duplicate genres' do
       let(:id) { 28_367 }
       it do
-        expect(subject[:genres]).to eq [{
-          id: 27,
-          name: 'Shounen'
-        }, {
-          id: 4,
-          name: 'Comedy'
-        }, {
-          id: 24,
-          name: 'Sci-Fi'
-        }, {
-          id: 57,
-          name: 'Gag Humor'
-        }]
+        expect(subject[:genres]).to eq [
+          { id: 27, name: 'Shounen', kind: :demographic },
+          { id: 4, name: 'Comedy', kind: :genre },
+          { id: 24, name: 'Sci-Fi', kind: :genre },
+          { id: 57, name: 'Gag Humor', kind: :theme }
+        ]
       end
     end
 
