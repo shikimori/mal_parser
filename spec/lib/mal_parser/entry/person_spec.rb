@@ -1,5 +1,5 @@
 describe MalParser::Entry::Person do
-  let(:parser) { MalParser::Entry::Person.new id }
+  let(:parser) { described_class.new id }
   let(:id) { 11 }
 
   describe '#call', :vcr do

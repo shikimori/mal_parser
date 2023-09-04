@@ -1,10 +1,6 @@
 describe MalParser::Catalog::Page do
   let(:parser) do
-    MalParser::Catalog::Page.new(
-      type: type,
-      page: page,
-      sorting: sorting
-    )
+    described_class.new type: type, page: page, sorting: sorting
   end
 
   let(:type) { 'anime' }

@@ -1,5 +1,5 @@
 describe MalParser::Entry::Recommendations do
-  let(:parser) { MalParser::Entry::Recommendations.new id, type }
+  let(:parser) { described_class.new id, type }
   let(:id) { 32_948 }
   let(:type) { :anime }
 

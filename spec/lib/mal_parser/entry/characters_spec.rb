@@ -1,5 +1,5 @@
 describe MalParser::Entry::Characters do
-  let(:parser) { MalParser::Entry::Characters.new id, type }
+  let(:parser) { described_class.new id, type }
   let(:type) { :anime }
 
   describe '#call', :vcr do

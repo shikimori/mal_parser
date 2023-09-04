@@ -1,5 +1,5 @@
 describe MalParser::Entry::Base do
-  let(:parser) { MalParser::Entry::Base.new id }
+  let(:parser) { described_class.new id }
 
   describe '#call', :vcr do
     before { allow(parser).to receive(:type).and_return type }
