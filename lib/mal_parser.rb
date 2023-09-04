@@ -20,6 +20,7 @@ module MalParser
     autoload :Person, 'mal_parser/entry/person'
     autoload :Characters, 'mal_parser/entry/characters'
     autoload :Recommendations, 'mal_parser/entry/recommendations'
+    autoload :MoreInfo, 'mal_parser/entry/more_info'
   end
 
   class RecordNotFound < StandardError
