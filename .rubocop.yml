@@ -1,13 +1,25 @@
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 3.2
   Exclude:
-    - bin/*
+    - app/chewy/*
+    - config/**/*
+    - db/**/*
+    - lib/tasks/*
     - Guardfile
+    - Capfile
     - Gemfile
     - Rakefile
-    - '*.gemspec'
     - spec/spec_helper.rb
-    - spec/support*
+    - spec/rails_helper.rb
+    - spec/support/*
+    - spec/factories/*
+    - bin/*
+    - node_modules/**/*
+    - public/packs/**/*
+    - public/packs-test/**/*
+    - lib/named_logger.rb
+    - lib/active_cacher.rb
+    - lib/dsl_attribute.rb
   UseCache: false
   NewCops: enable
 
@@ -15,14 +27,9 @@ Layout/LineLength:
   Max: 100
   AllowURI: true
   IgnoreCopDirectives: true
-  IgnoredPatterns: ['\A\ *#']
+  AllowedPatterns: ['\A\ *#']
   Exclude:
     - spec/**/*
-Metrics/BlockLength:
-  Exclude:
-    - spec/**/*
-  ExcludedMethods:
-    - state_machine
 Style/NestedParenthesizedCalls:
   Exclude:
     - spec/**/*
@@ -40,6 +47,8 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 15
 
+Metrics/BlockLength:
+  Enabled: false
 Migration/DepartmentName:
   Enabled: false
 Style/MultilineBlockChain:
@@ -93,7 +102,7 @@ Style/IfUnlessModifier:
 Naming/MemoizedInstanceVariableName:
   Enabled: false
 Naming/VariableNumber:
-  EnforcedStyle: snake_case
+  Enabled: false
 Lint/UriEscapeUnescape:
   Enabled: false
 Naming/RescuedExceptionsVariableName:
@@ -103,6 +112,10 @@ Style/OptionalBooleanParameter:
 Style/HashAsLastArrayItem:
   Enabled: false
 Style/StringConcatenation:
+  Enabled: false
+Style/ExplicitBlockArgument:
+  Enabled: false
+Style/TernaryParentheses:
   Enabled: false
 
 Style/StringLiterals:
@@ -131,6 +144,10 @@ Layout/DotPosition:
   - leading
   - trailing
 
+Layout/LineEndStringConcatenationIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+
 Style/CollectionMethods:
   Description: Preferred collection methods.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#map-find-select-reduce-size
@@ -144,3 +161,6 @@ Style/CollectionMethods:
 
 Style/Lambda:
   EnforcedStyle: literal
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
