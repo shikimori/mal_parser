@@ -4,7 +4,7 @@ module MalParser
       english japanese synonyms kind episodes status aired_on released_on
       broadcast studios origin genres duration rating
       score ranked popularity members favorites synopsis related
-      external_links season
+      external_links season is_more_info
     ]
     AIRED_FIELD = 'Aired'
 
@@ -85,6 +85,10 @@ module MalParser
 
     def season
       parse_line('Premiered')&.downcase&.gsub(' ', '_')
+    end
+
+    def is_more_info # rubocop:disable Naming/PredicateName
+      css('#horiznav_nav a').last.text.strip == 'More Info'
     end
 
     def aired_on

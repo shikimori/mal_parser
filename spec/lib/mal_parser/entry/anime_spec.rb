@@ -1,6 +1,6 @@
 describe MalParser::Entry::Anime do
   let(:parser) { described_class.new id }
-  let(:id) { 11757 }
+  let(:id) { 11_757 }
 
   describe '#call', :vcr do
     subject { parser.call }
@@ -65,6 +65,7 @@ describe MalParser::Entry::Anime do
           kind: 'wikipedia',
           url: 'http://en.wikipedia.org/wiki/Sword_Art_Online'
         }],
+        is_more_info: false,
         synopsis: <<-TEXT.strip
           Ever since the release of the innovative NerveGear, gamers from all around the globe have been given the opportunity to experience a completely immersive virtual reality. Sword Art Online (SAO), one of the most recent games on the console, offers a gateway into the wondrous world of Aincrad, a vivid, medieval landscape where users can do anything within the limits of imagination. With the release of this worldwide sensation, gaming has never felt more lifelike.<br><br>However, the idyllic fantasy rapidly becomes a brutal nightmare when SAO's creator traps thousands of players inside the game. The "log-out" function has been removed, with the only method of escape involving beating all of Aincrad's one hundred increasingly difficult levels. Adding to the struggle, any in-game death becomes permanent, ending the player's life in the real world.<br><br>While Kazuto "Kirito" Kirigaya was fortunate enough to be a beta-tester for the game, he quickly finds that despite his advantages, he cannot overcome SAO's challenges alone. Teaming up with Asuna Yuuki and other talented players, Kirito makes an effort to face the seemingly insurmountable trials head-on. But with difficult bosses and threatening dark cults impeding his progress, Kirito finds that such tasks are much easier said than done.<br><br>[Written by MAL Rewrite]
         TEXT
@@ -153,6 +154,11 @@ describe MalParser::Entry::Anime do
           ]
         )
       end
+    end
+
+    context 'is_more_info' do
+      let(:id) { 1 }
+      it { expect(subject[:is_more_info]).to eq true }
     end
   end
 end
