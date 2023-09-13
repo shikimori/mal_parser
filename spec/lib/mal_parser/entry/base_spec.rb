@@ -11,7 +11,7 @@ describe MalParser::Entry::Base do
 
       it do
         is_expected.to eq(
-          id: id,
+          id:,
           name: 'Cowboy Bebop',
           image: 'https://cdn.myanimelist.net/images/anime/4/19644.jpg'
         )
@@ -24,7 +24,7 @@ describe MalParser::Entry::Base do
 
       it do
         is_expected.to eq(
-          id: id,
+          id:,
           name: 'Monster',
           image: 'https://cdn.myanimelist.net/images/manga/3/258224.jpg'
         )
@@ -37,7 +37,7 @@ describe MalParser::Entry::Base do
 
       it do
         is_expected.to eq(
-          id: id,
+          id:,
           name: 'Spike Spiegel',
           image: 'https://cdn.myanimelist.net/images/characters/4/50197.jpg'
         )
@@ -50,7 +50,7 @@ describe MalParser::Entry::Base do
 
       it do
         is_expected.to eq(
-          id: id,
+          id:,
           name: 'Tomokazu Seki',
           image: 'https://cdn.myanimelist.net/images/voiceactors/1/55486.jpg'
         )

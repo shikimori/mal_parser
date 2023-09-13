@@ -7,7 +7,7 @@ describe MalParser::Entry::Character do
 
     it do
       is_expected.to eq(
-        id: id,
+        id:,
         name: 'Kazuto Kirigaya',
         image: 'https://cdn.myanimelist.net/images/characters/7/204821.jpg',
         japanese: '桐ヶ谷 和人',
@@ -48,7 +48,7 @@ describe MalParser::Entry::Character do
       let(:id) { 28_754 }
       it do
         is_expected.to eq(
-          id: id,
+          id:,
           name: 'Ji-hoo Min',
           image: 'https://cdn.myanimelist.net/images/characters/13/74084.jpg',
           japanese: nil,

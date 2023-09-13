@@ -1,10 +1,10 @@
 describe MalParser::Entry::MoreInfo do
   let(:parser) { described_class.new id, type }
-  let(:id) { 32_948 }
-  let(:type) { :anime }
 
   describe '#call', :vcr do
     subject { parser.call }
+    let(:id) { 32_948 }
+    let(:type) { :anime }
 
     it do
       is_expected.to eq(
@@ -20,8 +20,20 @@ describe MalParser::Entry::MoreInfo do
     end
 
     context 'no more info' do
-      let(:id) { 35120 }
-      it { is_expected.to eq '[MAL]' }
+      let(:id) { 35_120 }
+      it { is_expected.to be_nil }
+    end
+
+    context 'multiline' do
+      let(:id) { 150_413 }
+      let(:type) { :manga }
+      it do
+        is_expected.to eq 'Volume 1 includes a prologue.' \
+          "\n\n" \
+          '231 chapters were published in the web novel, which ' \
+          'were recompiled for a total of 22 chapters in the print release. ' \
+          '[MAL]'
+      end
     end
   end
 end

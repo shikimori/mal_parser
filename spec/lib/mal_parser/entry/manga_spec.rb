@@ -7,7 +7,7 @@ describe MalParser::Entry::Manga do
 
     it do
       is_expected.to eq(
-        id: id,
+        id:,
         name: 'Genryuu Butouden: Origin',
         image: 'https://cdn.myanimelist.net/images/manga/2/101429l.jpg',
         english: 'The Battle of Genryu: Origin',

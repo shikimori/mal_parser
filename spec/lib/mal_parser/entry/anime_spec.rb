@@ -1,13 +1,13 @@
 describe MalParser::Entry::Anime do
   let(:parser) { described_class.new id }
-  let(:id) { 11_757 }
 
   describe '#call', :vcr do
     subject { parser.call }
+    let(:id) { 11_757 }
 
     it do
       is_expected.to eq(
-        id: id,
+        id:,
         name: 'Sword Art Online',
         image: 'https://cdn.myanimelist.net/images/anime/11/39717l.jpg',
         english: 'Sword Art Online',

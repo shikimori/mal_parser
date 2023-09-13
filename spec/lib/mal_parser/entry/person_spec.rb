@@ -7,7 +7,7 @@ describe MalParser::Entry::Person do
 
     it do
       is_expected.to eq(
-        id: id,
+        id:,
         name: 'Kouichi Yamadera',
         image: 'https://cdn.myanimelist.net/images/voiceactors/3/60992.jpg',
         japanese: '山寺 宏一',
@@ -20,7 +20,7 @@ describe MalParser::Entry::Person do
       let(:id) { 38_062 }
       it do
         is_expected.to eq(
-          id: id,
+          id:,
           name: 'Aya',
           image: 'https://cdn.myanimelist.net/images/voiceactors/3/40196.jpg',
           japanese: '亜矢',
