@@ -13,8 +13,11 @@ module MalParser
       'Music' => :music,
       'TV' => :tv,
       'Special' => :special,
+      'TV Special' => :tv_special,
       'OVA' => :ova,
-      'ONA' => :ona
+      'ONA' => :ona,
+      'PV' => :pv,
+      'CM' => :cm
     }
     STATUS = {
       'Not yet aired' => :anons,
