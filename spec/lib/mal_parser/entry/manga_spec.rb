@@ -91,5 +91,10 @@ describe MalParser::Entry::Manga do
         ]
       end
     end
+
+    context 'name containing > or <' do
+      let(:id) { 99309 }
+      it { expect(subject[:name]).to eq 'Chika><Chika' }
+    end
   end
 end

@@ -14,7 +14,23 @@ module MalParser
   private
 
     def name
-      css('meta[property="og:title"]').first&.attr(:content)&.strip
+      meta_name = css('meta[property="og:title"]').first&.attr(:content)&.strip
+
+      if meta_name.match?(/[><]/)
+        h1_name
+      else
+        meta_name
+      end
+    end
+
+    def h1_name
+      css(
+        [
+          'h1 .h1-title span[itemprop="name"]',
+          'h1 span[itemprop="name"]',
+          'h1 strong'
+        ].join(',')
+      ).children.first.text.gsub(/  +/, ' ')
     end
 
     def image

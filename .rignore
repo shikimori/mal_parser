@@ -1,0 +1,2 @@
+spec/vcr_cassettes
+Gemfile.lock
