@@ -124,7 +124,7 @@ module MalParser
     end
 
     def genres
-      parse_links('Demographic', additionals: { kind: :demographic }) +
+      parse_links('Demographic', can_be_plural: true, additionals: { kind: :demographic }) +
         parse_links('Genre', can_be_plural: true, additionals: { kind: :genre }) +
         parse_links('Theme', can_be_plural: true, additionals: { kind: :theme })
     end

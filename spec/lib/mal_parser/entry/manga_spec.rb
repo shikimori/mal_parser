@@ -76,5 +76,20 @@ describe MalParser::Entry::Manga do
         }]
       end
     end
+
+    context 'multiple demographic' do
+      let(:id) { 1706 }
+      it do
+        expect(subject[:genres]).to eq [
+          { id: 41, kind: :demographic, name: 'Seinen' },
+          { id: 27, kind: :demographic, name: 'Shounen' },
+          { id: 1, kind: :genre, name: 'Action' },
+          { id: 2, kind: :genre, name: 'Adventure' },
+          { id: 7, kind: :genre, name: 'Mystery' },
+          { id: 37, kind: :genre, name: 'Supernatural' },
+          { id: 13, kind: :theme, name: 'Historical' }
+        ]
+      end
+    end
   end
 end
