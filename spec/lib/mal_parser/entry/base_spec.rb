@@ -39,7 +39,7 @@ describe MalParser::Entry::Base do
         is_expected.to eq(
           id:,
           name: 'Spike Spiegel',
-          image: 'https://cdn.myanimelist.net/images/characters/4/50197.jpg'
+          image: 'https://cdn.myanimelist.net/images/characters/11/516853.jpg'
         )
       end
     end
