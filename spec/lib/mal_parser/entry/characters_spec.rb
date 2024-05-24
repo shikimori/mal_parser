@@ -14,7 +14,7 @@ describe MalParser::Entry::Characters do
           id: 139_108,
           roles: %w[Main]
         )
-        expect(characters[:staff]).to have(26).items
+        expect(characters[:staff]).to have(39).items
         expect(characters[:staff].first).to eq(
           id: 49_893,
           roles: %w[Producer]
@@ -50,11 +50,8 @@ describe MalParser::Entry::Characters do
       let(:id) { 34_312 }
       it do
         is_expected.to eq(
-          characters: [{
-            id: 126_511,
-            roles: %w[Main]
-          }],
-          staff: [{ id: 8192, roles: ['Director'] }]
+          characters: [{ id: 126501, roles: ['Main'] }, { id: 126511, roles: ['Main'] }, { id: 223235, roles: ['Main'] }, { id: 126502, roles: ['Supporting'] }, { id: 126505, roles: ['Supporting'] }],
+          staff: [{ id: 8192, roles: ['Director', 'Character Design'] }, { id: 64522, roles: ['Director of Photography'] }]
         )
       end
     end
