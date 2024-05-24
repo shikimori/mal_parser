@@ -136,6 +136,7 @@ module MalParser
         .to_html(save_with: ParseHelper::NOKOGIRI_SAVE_OPTIONS)
         .gsub(/\r|\n/, '')
         .gsub(SPOILER_BLOCK_REGEXP, '[spoiler_block=Spoiler]\1[/spoiler_block]')
+        .gsub(/(<br>)+\Z/, '')
 
       CGI.unescapeHTML(fixed_text) unless fixed_text&.empty?
     end
