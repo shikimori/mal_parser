@@ -1,6 +1,6 @@
 describe MalParser::Catalog::Page do
   let(:parser) do
-    described_class.new type: type, page: page, sorting: sorting
+    described_class.new type:, page:, sorting:
   end
 
   let(:type) { 'anime' }
@@ -44,8 +44,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 1961,
-          name: 'Arashi no Yoru ni',
+          id: 6093,
+          name: 'Anmitsu Hime',
           type: :anime
         )
       end
@@ -57,8 +57,8 @@ describe MalParser::Catalog::Page do
       it do
         is_expected.to have(MalParser::Catalog::Page::ENTRIES_PER_PAGE).items
         expect(results.first).to eq(
-          id: 53071,
-          name: 'Hidden Region',
+          id: 58919,
+          name: 'Hyakuemu.',
           type: :anime
         )
       end
