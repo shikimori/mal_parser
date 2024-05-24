@@ -72,93 +72,93 @@ describe MalParser::Entry::Anime do
       )
     end
 
-    # context 'none studios found' do
-    #   let(:id) { 34_746 }
-    #   it { expect(subject[:studios]).to eq [] }
-    # end
-    #
-    # context 'record not found' do
-    #   let(:id) { 999_999_999 }
-    #   it { expect { subject }.to raise_error MalParser::RecordNotFound }
-    # end
-    #
-    # context 'missing related' do
-    #   let(:id) { 157 }
-    #   it do
-    #     expect(subject[:related]).to eq(
-    #       adaptation: [{
-    #         id: 15,
-    #         name: 'Mahou Sensei Negima!',
-    #         type: :manga
-    #       }],
-    #       alternative_version: [{
-    #         id: 1_546,
-    #         name: 'Negima!?',
-    #         type: :anime
-    #       }],
-    #       alternative_setting: [{
-    #         id: 3_948,
-    #         name: 'Mahou Sensei Negima!: Introduction Film',
-    #         type: :anime
-    #       }, {
-    #         id: 4_188,
-    #         name: 'Mahou Sensei Negima!: Shiroki Tsubasa Ala Alba',
-    #         type: :anime
-    #       }],
-    #       other: [{
-    #         id: 34_450,
-    #         name: 'Mahou Sensei Negima! Tokubetsu Eizou',
-    #         type: :anime
-    #       }],
-    #       sequel: [{
-    #         id: 33_478,
-    #         name: 'UQ Holder! Mahou Sensei Negima! 2',
-    #         type: :anime
-    #       }]
-    #     )
-    #   end
-    # end
-    #
-    # context 'duplicate genres' do
-    #   let(:id) { 28_367 }
-    #   it do
-    #     expect(subject[:genres]).to eq [
-    #       { id: 27, name: 'Shounen', kind: :demographic },
-    #       { id: 4, name: 'Comedy', kind: :genre },
-    #       { id: 24, name: 'Sci-Fi', kind: :genre },
-    #       { id: 57, name: 'Gag Humor', kind: :theme }
-    #     ]
-    #   end
-    # end
-    #
-    # context 'synopsis' do
-    #   let(:id) { 39_893 }
-    #   it do
-    #     expect(subject[:synopsis]).to eq(
-    #       'Set in a city modeled after San Francisco in the 1980s, the protagonist has transformed into the hero Muteking and is fighting against evil aliens for some reason. Such a cheerful hero will return in 2020! Sci-fi hero love comedy <i>Muteking the Dancing Hero</i>, singing and dancing with pop music.<br><br>(Source: Official Website)'
-    #     )
-    #   end
-    # end
-    #
-    # context 'external_links' do
-    #   let(:id) { 32_281 }
-    #   it do
-    #     expect(subject[:external_links]).to eq(
-    #       [
-    #         { kind: 'official_site', url: 'http://www.kiminona.com/' },
-    #         { kind: 'twitter', url: 'https://twitter.com/kiminona_movie' },
-    #         { kind: 'anime_db', url: 'https://anidb.net/perl-bin/animedb.pl?show=anime&aid=11829' },
-    #         { kind: 'anime_news_network', url: 'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=18171' },
-    #         { kind: 'wikipedia', url: 'https://en.wikipedia.org/wiki/Your_Name' },
-    #         { kind: 'wikipedia', url: 'https://ja.wikipedia.org/wiki/%E5%90%9B%E3%81%AE%E5%90%8D%E3%81%AF%E3%80%82' }
-    #       ]
-    #     )
-    #   end
-    # end
-    #
-    # context 'is_more_info' do
-    #   let(:id) { 1 }
-    #   it { expect(subject[:is_more_info]).to eq true }
-    # end
+    context 'none studios found' do
+      let(:id) { 34_746 }
+      it { expect(subject[:studios]).to eq [] }
+    end
+
+    context 'record not found' do
+      let(:id) { 999_999_999 }
+      it { expect { subject }.to raise_error MalParser::RecordNotFound }
+    end
+
+    context 'missing related' do
+      let(:id) { 157 }
+      it do
+        expect(subject[:related]).to eq(
+          adaptation: [{
+            id: 15,
+            name: 'Mahou Sensei Negima!',
+            type: :manga
+          }],
+          alternative_version: [{
+            id: 1_546,
+            name: 'Negima!?',
+            type: :anime
+          }],
+          alternative_setting: [{
+            id: 3_948,
+            name: 'Mahou Sensei Negima!: Introduction Film',
+            type: :anime
+          }, {
+            id: 4_188,
+            name: 'Mahou Sensei Negima!: Shiroki Tsubasa Ala Alba',
+            type: :anime
+          }],
+          other: [{
+            id: 34_450,
+            name: 'Mahou Sensei Negima! Tokubetsu Eizou',
+            type: :anime
+          }],
+          sequel: [{
+            id: 33_478,
+            name: 'UQ Holder! Mahou Sensei Negima! 2',
+            type: :anime
+          }]
+        )
+      end
+    end
+
+    context 'duplicate genres' do
+      let(:id) { 28_367 }
+      it do
+        expect(subject[:genres]).to eq [
+          { id: 27, name: 'Shounen', kind: :demographic },
+          { id: 4, name: 'Comedy', kind: :genre },
+          { id: 24, name: 'Sci-Fi', kind: :genre },
+          { id: 57, name: 'Gag Humor', kind: :theme }
+        ]
+      end
+    end
+
+    context 'synopsis' do
+      let(:id) { 39_893 }
+      it do
+        expect(subject[:synopsis]).to eq(
+          'Set in a city modeled after San Francisco in the 1980s, the protagonist has transformed into the hero Muteking and is fighting against evil aliens for some reason. Such a cheerful hero will return in 2020! Sci-fi hero love comedy <i>Muteking the Dancing Hero</i>, singing and dancing with pop music.<br><br>(Source: Official Website)'
+        )
+      end
+    end
+
+    context 'external_links' do
+      let(:id) { 32_281 }
+      it do
+        expect(subject[:external_links]).to eq(
+          [
+            { kind: 'official_site', url: 'http://www.kiminona.com/' },
+            { kind: 'twitter', url: 'https://twitter.com/kiminona_movie' },
+            { kind: 'anime_db', url: 'https://anidb.net/perl-bin/animedb.pl?show=anime&aid=11829' },
+            { kind: 'anime_news_network', url: 'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=18171' },
+            { kind: 'wikipedia', url: 'https://en.wikipedia.org/wiki/Your_Name' },
+            { kind: 'wikipedia', url: 'https://ja.wikipedia.org/wiki/%E5%90%9B%E3%81%AE%E5%90%8D%E3%81%AF%E3%80%82' }
+          ]
+        )
+      end
+    end
+
+    context 'is_more_info' do
+      let(:id) { 1 }
+      it { expect(subject[:is_more_info]).to eq true }
+    end
   end
 end
