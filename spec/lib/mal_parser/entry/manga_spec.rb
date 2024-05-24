@@ -27,9 +27,9 @@ describe MalParser::Entry::Manga do
           { id: 23, name: 'School', kind: :theme }
         ],
         score: 0.0,
-        ranked: 18676,
-        popularity: 35778,
-        members: 128,
+        ranked: 20749,
+        popularity: 40184,
+        members: 135,
         favorites: 0,
         related: {},
         external_links: [{
