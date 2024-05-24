@@ -178,16 +178,9 @@ module MalParser
     end
 
     def related
-      parse_related.each_with_object({}) do |tr, memo|
-        tds = tr.css('td')
-        value = tds.first.text.sub(/:$/, '').strip.downcase
-        relation = RELATED[value] || explode!(:related, value)
-
-        memo[relation] = tds.last
-          .css('a')
-          .reject { |link| link.text == '' }
-          .map { |link| parse_link link, with_type: true }
-          .compact
+      parse_related_old.each_with_object(parse_related_new) do |(relation, entries), memo|
+        memo[relation] ||= []
+        memo[relation] += entries
       end
     end
 
@@ -218,10 +211,6 @@ module MalParser
       )&.inner_html
     end
 
-    def parse_related
-      css('table.entries-table tr')
-    end
-
     def extract_external_link_kind text, url
       fixed_text = text.delete(' ').gsub(/(?<!^)([A-Z]+)/, '_\1').downcase
 
@@ -229,6 +218,32 @@ module MalParser
       return if fixed_text == 'syoboi'
 
       EXTERNAL_LINKS_KIND[fixed_text] || fixed_text
+    end
+
+    def parse_related_new
+      css('.related-entries .entries-tile .entry .content')
+        .each_with_object({}) do |doc, memo|
+          value = doc.css('.relation').text.strip.split("\n").first&.downcase
+          relation = RELATED[value] || explode!(:related, value)
+
+          memo[relation] ||= []
+          memo[relation].push(parse_link(doc.css('.title a').first, with_type: true))
+        end
+    end
+
+    def parse_related_old # rubocop:disable Metrics/AbcSize
+      css('.related-entries table.entries-table tr')
+        .each_with_object({}) do |tr, memo|
+          tds = tr.css('td')
+          value = tds.first.text.sub(/:$/, '').strip.downcase
+          relation = RELATED[value] || explode!(:related, value)
+
+          memo[relation] = tds.last
+            .css('a')
+            .reject { |link| link.text == '' }
+            .map { |link| parse_link link, with_type: true }
+            .compact
+        end
     end
   end
 end

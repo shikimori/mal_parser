@@ -44,8 +44,8 @@ describe MalParser::Entry::Anime do
           ],
           other: [
             { id: 16099, name: 'Sword Art Online: Sword Art Offline', type: :anime },
-            { id: 53529, name: 'Sword Art Online (Original Movie)', type: :anime },
-            { id: 53588, name: 'Sword Art Online: Full Dive - Opening Eizou', type: :anime }
+            { id: 53588, name: 'Sword Art Online: Full Dive - Opening Eizou', type: :anime },
+            { id: 53529, name: 'Sword Art Online (Original Movie)', type: :anime }
           ],
           sequel: [
             { id: 20021, name: 'Sword Art Online: Extra Edition', type: :anime },

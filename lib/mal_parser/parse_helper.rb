@@ -79,7 +79,7 @@ module MalParser
       else
         node
           &.css('a')
-          &.map { |v| parse_link v, additionals: additionals }
+          &.map { |v| parse_link v, additionals: }
           &.uniq
       end
     end
@@ -89,9 +89,9 @@ module MalParser
       name = node.text.strip
 
       if with_type
-        { id: extract_id(url), name: name, type: extract_type(url), **additionals }
+        { id: extract_id(url), name:, type: extract_type(url), **additionals }
       else
-        { id: extract_id(url), name: name, **additionals }
+        { id: extract_id(url), name:, **additionals }
       end
     end
 
@@ -100,7 +100,7 @@ module MalParser
     end
 
     def parse_date date # rubocop:disable Metrics/MethodLength
-      fixed_date = date.gsub(/^, /, '').gsub(/ ,/, '')
+      fixed_date = date.gsub(/^, /, '').gsub(' ,', '')
 
       case date
         when '?' then nil
@@ -146,11 +146,12 @@ module MalParser
     end
 
     def explode! param, value
-      raise UnexpectedValue,
+      raise UnexpectedValue.new(
         klass: self.class,
         id: @id,
-        param: param,
-        value: value
+        param:,
+        value:
+      )
     end
   end
 end
