@@ -34,18 +34,18 @@ module MalParser
       'Rx - Hentai' => :rx
     }
     RELATED = {
-      'Adaptation' => :adaptation,
-      'Alternative setting' => :alternative_setting,
-      'Alternative version' => :alternative_version,
-      'Character' => :character,
-      'Full story' => :full_story,
-      'Other' => :other,
-      'Parent story' => :parent_story,
-      'Prequel' => :prequel,
-      'Sequel' => :sequel,
-      'Side story' => :side_story,
-      'Spin-off' => :spin_off,
-      'Summary' => :summary
+      'adaptation' => :adaptation,
+      'alternative setting' => :alternative_setting,
+      'alternative version' => :alternative_version,
+      'character' => :character,
+      'full story' => :full_story,
+      'other' => :other,
+      'parent story' => :parent_story,
+      'prequel' => :prequel,
+      'sequel' => :sequel,
+      'side story' => :side_story,
+      'spin-off' => :spin_off,
+      'summary' => :summary
     }
     EXTERNAL_LINKS_KIND = {
       'a_nn' => 'anime_news_network',
@@ -180,7 +180,7 @@ module MalParser
     def related
       parse_related.each_with_object({}) do |tr, memo|
         tds = tr.css('td')
-        value = tds.first.text.sub(/:$/, '')
+        value = tds.first.text.sub(/:$/, '').strip.downcase
         relation = RELATED[value] || explode!(:related, value)
 
         memo[relation] = tds.last
@@ -200,7 +200,7 @@ module MalParser
             kind = extract_external_link_kind(v.text, url)
             next if url == '#' || !kind
 
-            { kind: kind, url: url }
+            { kind:, url: }
           end
         end
         .compact
@@ -219,7 +219,7 @@ module MalParser
     end
 
     def parse_related
-      css('table.anime_detail_related_anime tr')
+      css('table.entries-table tr')
     end
 
     def extract_external_link_kind text, url
