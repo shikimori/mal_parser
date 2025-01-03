@@ -22,6 +22,7 @@ describe MalParser::Entry::Anime do
         broadcast: 'Sundays at 00:00 (JST)',
         studios: [{ id: 56, name: 'A-1 Pictures' }],
         origin: :light_novel,
+        origin_manga_id: 11757,
         genres: [
           { id: 1, name: 'Action', kind: :genre },
           { id: 2, name: 'Adventure', kind: :genre },
@@ -33,12 +34,24 @@ describe MalParser::Entry::Anime do
         duration: 23,
         rating: :pg_13,
         score: 7.21,
-        ranked: 3168,
-        popularity: 5,
-        members: 3078224,
-        favorites: 68681,
+        ranked: 3284,
+        popularity: 6,
+        members: 3156652,
+        favorites: 69137,
         related: {
-          adaptation: [{ id: 21479, name: 'Sword Art Online', type: :manga }],
+          adaptation: [{
+            id: 23718,
+            name: 'Sword Art Online: Aincrad',
+            type: :manga
+          }, {
+            id: 44733,
+            name: 'Sword Art Online: Fairy Dance',
+            type: :manga
+          }, {
+            id: 21479, name:
+              'Sword Art Online',
+            type: :manga
+          }],
           alternative_version: [
             { id: 42916, name: 'Sword Art Online: Progressive Movie - Hoshi Naki Yoru no Aria', type: :anime }
           ],

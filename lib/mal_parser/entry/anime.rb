@@ -2,7 +2,7 @@ module MalParser
   class Entry::Anime < Entry::Base # rubocop:disable Metrics/ClassLength
     FIELDS = Entry::Base::FIELDS + %i[
       english japanese synonyms kind episodes status aired_on released_on
-      broadcast studios origin genres duration rating
+      broadcast studios origin origin_manga_id genres duration rating
       score ranked popularity members favorites synopsis related
       external_links season is_more_info
     ]
@@ -121,6 +121,12 @@ module MalParser
 
     def origin
       (parse_line('Source') || 'unknown').downcase.tr(' ', '_').to_sym
+    end
+
+    def origin_manga_id
+      origin_node = doc.css('.spaceit_pad:contains("Source:") a')[0]
+
+      parse_link(origin_node)&.dig(:id) if origin_node
     end
 
     def genres
