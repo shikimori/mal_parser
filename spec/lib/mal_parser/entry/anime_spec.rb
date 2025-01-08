@@ -22,7 +22,6 @@ describe MalParser::Entry::Anime do
         broadcast: 'Sundays at 00:00 (JST)',
         studios: [{ id: 56, name: 'A-1 Pictures' }],
         origin: :light_novel,
-        origin_manga_id: 11757,
         genres: [
           { id: 1, name: 'Action', kind: :genre },
           { id: 2, name: 'Adventure', kind: :genre },
