@@ -120,7 +120,11 @@ module MalParser
     end
 
     def origin
-      (parse_line('Source') || 'unknown').downcase.tr(' ', '_').to_sym
+      (parse_line('Source') || 'unknown')
+        .downcase
+        .tr(' ', '_')
+        .gsub('4-koma_manga', 'four_koma_manga')
+        .to_sym
     end
 
     def genres
